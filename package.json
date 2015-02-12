@@ -1,0 +1,33 @@
+{
+  "name": "medium-editor-tables",
+  "version": "0.1.0",
+  "author": "Davi Ferreira <hi@daviferreira.com>",
+  "description": "MediumEditor extension to allow tables.",
+  "main": "src/js/medium-editor-tables.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daviferreira/medium-editor-tables"
+  },
+  "bugs": {
+    "url": "https://github.com/daviferreira/medium-editor-tables/issues",
+    "email": "hi@daviferreira.com"
+  },
+  "homepage": "http://daviferreira.github.io/medium-editor/",
+  "keywords": [
+    "editor",
+    "medium",
+    "wysiwyg",
+    "rich-text",
+    "tables",
+    "table"
+  ],
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/"
+  },
+  "license": "THE BEER-WARE LICENSE",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "medium-editor": "^2.3.0"
+  }
+}
