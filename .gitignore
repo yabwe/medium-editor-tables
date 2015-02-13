@@ -10,6 +10,4 @@ _SpecRunner.html
 reports/
 coverage/
 ._*
-
-#PhpStorm IDE
-.idea/
+bower_components/
