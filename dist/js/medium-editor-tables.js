@@ -351,6 +351,7 @@ MediumEditorTable.prototype = {
       this.builder = new Builder({
         onClick: function (rows, cols) {
           this.table.insert(rows, cols);
+          this.hide();
         }.bind(this),
         ownerDocument: this.base.options.ownerDocument
       });
