@@ -45,7 +45,7 @@ function placeCaretAtNode(node, before) {
   }
 }
 
-function isInsideTable(node) {
+function isInsideElementOfTag(node, tag) {
   if (!node) {
     return false;
   }
@@ -54,7 +54,7 @@ function isInsideTable(node) {
       tagName = parentNode.tagName.toLowerCase();
 
   while (tagName !== 'body') {
-    if (tagName === 'table') {
+    if (tagName === tag) {
       return true;
     }
     parentNode = parentNode.parentNode;
@@ -80,20 +80,6 @@ function getParentOf(el, tagTarget) {
     }
     el = el.parentNode;
     tagName = el && el.tagName ? el.tagName.toLowerCase() : false;
-  }
-}
-
-function isLastCell(el, row, table) {
-  return (
-    --row.cells.length == el.cellIndex &&
-    --table.rows.length == row.rowIndex
-  );
-}
-
-function getPreviousRowLastCell(row) {
-  row = row.previousSibling;
-  if (row) {
-    return row.cells[row.cells.length - 1];
   }
 }
 
@@ -287,7 +273,7 @@ Table.prototype = {
             row = row,
             table = table;
 
-        if (e.which === 9 && isInsideTable(el)) {
+        if (e.which === 9 && isInsideElementOfTag(el, 'table')) {
           e.preventDefault();
           e.stopPropagation();
           el = getParentOf(el, 'td');
@@ -295,11 +281,11 @@ Table.prototype = {
           table = getParentOf(el, 'table');
           if (e.shiftKey) {
             placeCaretAtNode(
-              el.previousSibling || getPreviousRowLastCell(row),
+              el.previousSibling || self._getPreviousRowLastCell(row),
               true
             );
           } else {
-            if (isLastCell(el, row, table)) {
+            if (self._isLastCell(el, row, table)) {
               self._insertRow(
                 getParentOf(el, 'tbody'),
                 row.cells.length
@@ -321,7 +307,22 @@ Table.prototype = {
     }
     tr.innerHTML = html;
     tbody.appendChild(tr);
+  },
+
+  _isLastCell: function (el, row, table) {
+    return (
+      --row.cells.length == el.cellIndex &&
+      --table.rows.length == row.rowIndex
+    );
+  },
+
+  _getPreviousRowLastCell: function (row) {
+    row = row.previousSibling;
+    if (row) {
+      return row.cells[row.cells.length - 1];
+    }
   }
+
 };
 
 function MediumEditorTable () {

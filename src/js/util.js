@@ -32,7 +32,7 @@ function placeCaretAtNode(node, before) {
   }
 }
 
-function isInsideTable(node) {
+function isInsideElementOfTag(node, tag) {
   if (!node) {
     return false;
   }
@@ -41,7 +41,7 @@ function isInsideTable(node) {
       tagName = parentNode.tagName.toLowerCase();
 
   while (tagName !== 'body') {
-    if (tagName === 'table') {
+    if (tagName === tag) {
       return true;
     }
     parentNode = parentNode.parentNode;
@@ -67,19 +67,5 @@ function getParentOf(el, tagTarget) {
     }
     el = el.parentNode;
     tagName = el && el.tagName ? el.tagName.toLowerCase() : false;
-  }
-}
-
-function isLastCell(el, row, table) {
-  return (
-    --row.cells.length == el.cellIndex &&
-    --table.rows.length == row.rowIndex
-  );
-}
-
-function getPreviousRowLastCell(row) {
-  row = row.previousSibling;
-  if (row) {
-    return row.cells[row.cells.length - 1];
   }
 }

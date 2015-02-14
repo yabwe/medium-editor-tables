@@ -51,7 +51,7 @@ Table.prototype = {
             row = row,
             table = table;
 
-        if (e.which === 9 && isInsideTable(el)) {
+        if (e.which === 9 && isInsideElementOfTag(el, 'table')) {
           e.preventDefault();
           e.stopPropagation();
           el = getParentOf(el, 'td');
@@ -59,11 +59,11 @@ Table.prototype = {
           table = getParentOf(el, 'table');
           if (e.shiftKey) {
             placeCaretAtNode(
-              el.previousSibling || getPreviousRowLastCell(row),
+              el.previousSibling || self._getPreviousRowLastCell(row),
               true
             );
           } else {
-            if (isLastCell(el, row, table)) {
+            if (self._isLastCell(el, row, table)) {
               self._insertRow(
                 getParentOf(el, 'tbody'),
                 row.cells.length
@@ -85,5 +85,20 @@ Table.prototype = {
     }
     tr.innerHTML = html;
     tbody.appendChild(tr);
+  },
+
+  _isLastCell: function (el, row, table) {
+    return (
+      --row.cells.length == el.cellIndex &&
+      --table.rows.length == row.rowIndex
+    );
+  },
+
+  _getPreviousRowLastCell: function (row) {
+    row = row.previousSibling;
+    if (row) {
+      return row.cells[row.cells.length - 1];
+    }
   }
+
 };
