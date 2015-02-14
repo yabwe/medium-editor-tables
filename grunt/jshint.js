@@ -1,4 +1,4 @@
 module.exports = {
-  beforeConcat: ['src/js/core.js'],
+  beforeConcat: ['src/js/plugin.js'],
   afterConcat: ['dist/js/<%= package.name %>.js']
 };

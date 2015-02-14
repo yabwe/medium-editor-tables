@@ -4,7 +4,7 @@ module.exports = {
       'src/wrappers/start.js',
       'src/js/util.js',
       'src/js/builder.js',
-      'src/js/core.js',
+      'src/js/plugin.js',
       'src/wrappers/end.js'
     ],
     dest: 'dist/js/<%= package.name %>.js',

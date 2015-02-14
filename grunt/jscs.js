@@ -1,5 +1,5 @@
 module.exports = {
-  src: ['src/js/core.js'],
+  src: ['src/js/plugin.js'],
   options: {
     config: '.jscsrc'
   }
