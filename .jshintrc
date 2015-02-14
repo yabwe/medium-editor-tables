@@ -1,6 +1,14 @@
 {
-  "node": true,
-  "browser": true,
-  "esnext": true,
-  "newcap": false
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": false,
+  "noarg": true,
+  "sub": true,
+  "undef": true,
+  "unused": true,
+  "boss": true,
+  "eqnull": true,
+  "browser": true
 }

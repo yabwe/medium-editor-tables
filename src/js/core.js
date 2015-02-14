@@ -1,26 +1,24 @@
-if (typeof module === 'object') {
-  module.exports = MediumEditorTable;
-} else if (typeof define === 'function' && define.amd) {
-  define(function () {
-    'use strict';
-    return MediumEditorTable;
-  });
-}
-
-function MediumEditorTable() {
+(function (root, factory) {
+  'use strict';
+  if (typeof module === 'object') {
+    module.exports = factory;
+  } else if (typeof define === 'function' && define.amd) {
+    define(factory);
+  } else {
+    root.MediumEditorTable = factory;
+  }
+}(this, function () {
   'use strict';
 
-  this.parent = true;
-  this.hasForm = true;
-  this.showGrid = false;
+  function MediumEditorTable () {
+    this.parent = true;
+    this.hasForm = true;
+    this.showGrid = false;
 
-  this.createButton();
-}
+    this.createButton();
+  }
 
-(function (window, document) {
-  'use strict';
-
-  function getSelectionStart(doc) {
+  function getSelectionStart (doc) {
     var node = doc.getSelection().anchorNode,
         startNode = (node && node.nodeType === 3 ? node.parentNode : node);
     return startNode;
@@ -225,7 +223,6 @@ function MediumEditorTable() {
             col: parseInt(dataset.col, 10),
             row: parseInt(dataset.row, 10)
           };
-          console.log(self.hoveredCell);
           self.markCells();
         }, 10);
       });
@@ -330,4 +327,6 @@ function MediumEditorTable() {
       tbody.appendChild(tr);
     }
   };
-}(window, document));
+
+  return MediumEditorTable;
+}()));

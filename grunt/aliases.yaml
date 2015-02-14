@@ -1,13 +1,13 @@
 js:
-  - 'newer:jscs'
-  - 'newer:jshint'
-  - 'newer:concat'
-  - 'newer:uglify'
+  - 'jscs'
+  - 'jshint'
+  - 'concat'
+  - 'uglify'
 
 css:
-  - 'newer:sass'
-  - 'newer:autoprefixer'
-  - 'newer:cssmin'
+  - 'sass'
+  - 'autoprefixer'
+  - 'cssmin'
 
 default:
   - 'css'

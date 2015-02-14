@@ -1,61 +1,61 @@
 {
-    "excludeFiles": [
-        "./node_modules/**",
-        "./build/**"
-    ],
-    "disallowMixedSpacesAndTabs": true,
-    "disallowNewlineBeforeBlockStatements": true,
-    "disallowPaddingNewlinesInBlocks": true,
-    "disallowSpaceAfterObjectKeys": true,
-    "disallowTrailingComma": true,
+  "excludeFiles": [
+    "./node_modules/**",
+    "./build/**"
+  ],
+  "disallowMixedSpacesAndTabs": true,
+  "disallowNewlineBeforeBlockStatements": true,
+  "disallowPaddingNewlinesInBlocks": true,
+  "disallowSpaceAfterObjectKeys": true,
+  "disallowTrailingComma": true,
 
-    "maximumLineLength": {
-        "value": 120,
-        "allowComments": true,
-        "allowUrlComments": true,
-        "allowRegex": true
-    },
+  "maximumLineLength": {
+    "value": 120,
+    "allowComments": true,
+    "allowUrlComments": true,
+    "allowRegex": true
+  },
 
-    "requireBlocksOnNewline": true,
-    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
-    "requireCapitalizedConstructors": true,
-    "requireCommaBeforeLineBreak": true,
-    "requireSpaceAfterKeywords":  [
-        "if",
-        "else",
-        "for",
-        "while",
-        "do",
-        "switch",
-        "return",
-        "try",
-        "catch"
-    ],
-    "requireSpaceAfterLineComment": true,
-    "requireSpaceBeforeBlockStatements": true,
-    "requireSpacesInConditionalExpression": {
-        "afterTest": true,
-        "beforeConsequent": true,
-        "afterConsequent": true,
-        "beforeAlternate": true
-    },
-    "requireSpacesInAnonymousFunctionExpression": {
-        "beforeOpeningCurlyBrace": true
-    },
-    "requireSpacesInFunctionExpression": {
-        "beforeOpeningCurlyBrace": true
-    },
-    "requireSpacesInNamedFunctionExpression": {
-        "beforeOpeningCurlyBrace": true
-    },
+  "requireBlocksOnNewline": true,
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+  "requireCapitalizedConstructors": true,
+  "requireCommaBeforeLineBreak": true,
+  "requireSpaceAfterKeywords":  [
+    "if",
+    "else",
+    "for",
+    "while",
+    "do",
+    "switch",
+    "return",
+    "try",
+    "catch"
+  ],
+  "requireSpaceAfterLineComment": true,
+  "requireSpaceBeforeBlockStatements": true,
+  "requireSpacesInConditionalExpression": {
+    "afterTest": true,
+    "beforeConsequent": true,
+    "afterConsequent": true,
+    "beforeAlternate": true
+  },
+  "requireSpacesInAnonymousFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "requireSpacesInFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "requireSpacesInNamedFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
 
-    "safeContextKeyword": ["self"],
+  "safeContextKeyword": ["self"],
 
-    "validateIndentation": 2,
-    "validateJSDoc": {
-        "checkParamNames": true,
-        "checkRedundantParams": true,
-        "requireParamTypes": true
-    },
-    "validateQuoteMarks": { "mark": "'", "escape": true }
+  "validateIndentation": 2,
+  "validateJSDoc": {
+    "checkParamNames": true,
+    "checkRedundantParams": true,
+    "requireParamTypes": true
+  },
+  "validateQuoteMarks": { "mark": "'", "escape": true }
 }
