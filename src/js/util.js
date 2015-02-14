@@ -2,7 +2,7 @@ function getSelectionText(doc) {
   if (doc.getSelection) {
     return doc.getSelection().toString();
   }
-  if (doc.selection && doc.selection.type != 'Control') {
+  if (doc.selection && doc.selection.type !== 'Control') {
     return doc.selection.createRange().text;
   }
   return '';

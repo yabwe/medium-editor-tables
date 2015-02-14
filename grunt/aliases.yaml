@@ -3,6 +3,7 @@ js:
   - 'concat'
   - 'jshint'
   - 'uglify'
+  - jasmine
 
 css:
   - 'sass'
