@@ -1,6 +1,10 @@
 ﻿# MediumEditor Tables
 
-[![Build Status](https://travis-ci.org/daviferreira/medium-editor-tables.svg)](https://travis-ci.org/daviferreira/medium-editor-tables)
+[![NPM info](https://nodei.co/npm/medium-editor-tables.png?downloads=true)](https://nodei.co/npm/medium-editor-tables.png?downloads=true)
+
+[![Travis build status](https://travis-ci.org/daviferreira/medium-editor-tables.png?branch=master)](https://travis-ci.org/daviferreira/medium-editor-tables)
+[![dependencies](https://david-dm.org/daviferreira/medium-editor-tables.png)](https://david-dm.org/daviferreira/medium-editor-tables)
+[![devDependency Status](https://david-dm.org/daviferreira/medium-editor-tables/dev-status.png)](https://david-dm.org/daviferreira/medium-editor-tables#info=devDependencies)
 
 MediumEditor Tables is an extension to add a table button/behavior to [MediumEditor](https://github.com/daviferreira/medium-editor).
 
