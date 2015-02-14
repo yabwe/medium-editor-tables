@@ -1,0 +1,11 @@
+js:
+  - 'newer:concat'
+  - 'newer:uglify'
+
+css:
+  - 'newer:sass'
+  - 'newer:cssmin'
+
+default:
+  - 'css'
+  - 'js'
