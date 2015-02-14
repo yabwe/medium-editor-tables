@@ -2,6 +2,10 @@
   top: 101%;
   left: 0;
   position: absolute;
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 .medium-editor-table-builder-grid {

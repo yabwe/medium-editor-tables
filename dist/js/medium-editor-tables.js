@@ -223,6 +223,7 @@ function MediumEditorTable() {
           col: parseInt(dataset.col, 10),
           row: parseInt(dataset.row, 10)
         };
+        console.log(self.hoveredCell);
         self.markCells();
       }, 10);
     });
@@ -244,13 +245,8 @@ function MediumEditorTable() {
         row: parseInt(el.dataset.row, 10)
       };
       var active = self.hoveredCell &&
-                   (
-                     cell.row < self.hoveredCell.row ||
-                     (
-                       cell.row === self.hoveredCell.row &&
-                       cell.col <= self.hoveredCell.col
-                     )
-                   );
+                   cell.row <= self.hoveredCell.row  &&
+                   cell.col <= self.hoveredCell.col;
       if (active === true) {
         el.classList.add('active');
       } else {
