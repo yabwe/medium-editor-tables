@@ -101,7 +101,7 @@ Grid.prototype = {
     var self = this;
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      self._callback(this.dataset.col, this.dataset.row);
+      self._callback(this.dataset.row, this.dataset.col);
     });
   }
 };

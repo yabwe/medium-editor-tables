@@ -15,8 +15,8 @@ MediumEditorTable.prototype = {
   getForm: function() {
     if (!this.builder) {
       this.builder = new Builder({
-        onClick: function (cols, rows) {
-          this.table.insert(cols, rows);
+        onClick: function (rows, cols) {
+          this.table.insert(rows, cols);
         }.bind(this),
         ownerDocument: this.base.options.ownerDocument
       });

@@ -1,9 +1,9 @@
-function getSelectionText() {
-  if (window.getSelection) {
-    return window.getSelection().toString();
+function getSelectionText(doc) {
+  if (doc.getSelection) {
+    return doc.getSelection().toString();
   }
-  if (document.selection && document.selection.type != 'Control') {
-    return document.selection.createRange().text;
+  if (doc.selection && doc.selection.type != 'Control') {
+    return doc.selection.createRange().text;
   }
   return '';
 }
@@ -14,10 +14,10 @@ function getSelectionStart(doc) {
   return startNode;
 }
 
-function placeCaretAtNode(node, before) {
-  if (window.getSelection !== undefined && node) {
-    var range = document.createRange();
-    var selection = window.getSelection();
+function placeCaretAtNode(doc, node, before) {
+  if (doc.getSelection !== undefined && node) {
+    var range = doc.createRange();
+    var selection = doc.getSelection();
 
     if (before) {
       range.setStartBefore(node);
