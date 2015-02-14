@@ -1,19 +1,19 @@
 test:
-  - 'jshint'
-  - 'uglify'
+  - jscs
+  - jshint
   - jasmine
 
 js:
-  - 'jscs'
-  - 'concat'
-  - 'test'
+  - concat
+  - test
+  - uglify
 
 css:
-  - 'sass'
-  - 'autoprefixer'
-  - 'cssmin'
+  - sass
+  - autoprefixer
+  - cssmin
 
 default:
-  - 'css'
-  - 'js'
-  - 'watch'
+  - css
+  - js
+  - watch
