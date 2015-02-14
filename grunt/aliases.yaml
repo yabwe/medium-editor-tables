@@ -1,4 +1,6 @@
 js:
+  - 'newer:jscs'
+  - 'newer:jshint'
   - 'newer:concat'
   - 'newer:uglify'
 
@@ -9,3 +11,4 @@ css:
 default:
   - 'css'
   - 'js'
+  - 'watch'
