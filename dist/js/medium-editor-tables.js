@@ -87,40 +87,22 @@ function getPreviousRowLastCell(row) {
   }
 }
 
-function Builder(options) {
-  return this.init(options);
+function Grid (el, callback) {
+  return this.init(el, callback);
 }
 
-Builder.prototype = {
-  init: function (options) {
-    this.options = options;
-    this._doc = options.ownerDocument || document;
-    this._root = this._doc.createElement('div');
-    this._root.className = 'medium-editor-table-builder';
-    this._renderGrid();
-    this._bindEvents();
-  },
-
-  getElement: function () {
-    return this._root;
-  },
-
-  hide: function () {
-    this._root.style.display = '';
-    this.setCurrentCell({ col: -1, row: -1 });
-    this._markCells();
-  },
-
-  show: function (left) {
-    this._root.style.display = 'block';
-    this._root.style.left = left + 'px';
+Grid.prototype = {
+  init: function (el, callback) {
+    this._root = el;
+    this._callback = callback;
+    return this._render();
   },
 
   setCurrentCell: function (cell) {
     this._currentCell = cell;
   },
 
-  _markCells: function () {
+  markCells: function () {
     [].forEach.call(this._cellsElements, function(el) {
       var cell = {
         col: parseInt(el.dataset.col, 10),
@@ -152,14 +134,14 @@ Builder.prototype = {
     }
   },
 
-  _getGridHTML: function () {
+  _html: function () {
     var html = '<div class="medium-editor-table-builder-grid clearfix">';
-    html += this._getCellsHTML();
+    html += this._cellsHTML();
     html += '</div>';
     return html;
   },
 
-  _getCellsHTML: function () {
+  _cellsHTML: function () {
     var html = '';
     this._generateCells();
     this._cells.map(function(cell) {
@@ -172,9 +154,10 @@ Builder.prototype = {
     return html;
   },
 
-  _renderGrid: function () {
-    this._root.innerHTML = this._getGridHTML();
+  _render: function () {
+    this._root.innerHTML = this._html();
     this._cellsElements = this._root.querySelectorAll('a');
+    this._bindEvents();
   },
 
   _bindEvents: function () {
@@ -198,7 +181,7 @@ Builder.prototype = {
           col: parseInt(dataset.col, 10),
           row: parseInt(dataset.row, 10)
         };
-        self._markCells();
+        self.markCells();
       }, 10);
     });
   },
@@ -207,10 +190,40 @@ Builder.prototype = {
     var self = this;
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      self.options.onClick(this.dataset.col, this.dataset.row);
+      self._callback(this.dataset.col, this.dataset.row);
     });
   }
 };
+
+function Builder(options) {
+  return this.init(options);
+}
+
+Builder.prototype = {
+  init: function (options) {
+    this.options = options;
+    this._doc = options.ownerDocument || document;
+    this._root = this._doc.createElement('div');
+    this._root.className = 'medium-editor-table-builder';
+    this.grid = new Grid(this._root, this.options.onClick);
+  },
+
+  getElement: function () {
+    return this._root;
+  },
+
+  hide: function () {
+    this._root.style.display = '';
+    this.grid.setCurrentCell({ col: -1, row: -1 });
+    this.grid.markCells();
+  },
+
+  show: function (left) {
+    this._root.style.display = 'block';
+    this._root.style.left = left + 'px';
+  }
+};
+
 
 function MediumEditorTable () {
   this.parent = true;
