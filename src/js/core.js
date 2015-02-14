@@ -1,3 +1,12 @@
+if (typeof module === 'object') {
+  module.exports = MediumEditorTable;
+} else if (typeof define === 'function' && define.amd) {
+  define(function () {
+    'use strict';
+    return MediumEditorTable;
+  });
+}
+
 function MediumEditorTable() {
   this.parent = true;
   this.hasForm = true;
@@ -9,8 +18,8 @@ function MediumEditorTable() {
 (function (window, document) {
   'use strict';
 
-  function getSelectionStart() {
-    var node = self.base.options.ownerDocument.getSelection().anchorNode,
+  function getSelectionStart(doc) {
+    var node = doc.getSelection().anchorNode,
         startNode = (node && node.nodeType === 3 ? node.parentNode : node);
     return startNode;
   }
@@ -185,6 +194,9 @@ function MediumEditorTable() {
   };
 
   MediumEditorTable.prototype.getButton = function () {
+    if (this.base.options.buttonLabels === 'fontawesome') {
+      this.button.innerHTML = '<i class="fa fa-table"></i>';
+    }
     return this.button;
   };
 
@@ -232,8 +244,13 @@ function MediumEditorTable() {
         row: parseInt(el.dataset.row, 10)
       };
       var active = self.hoveredCell &&
-                   cell.col <= self.hoveredCell.col &&
-                   cell.row <= self.hoveredCell.row;
+                   (
+                     cell.row < self.hoveredCell.row ||
+                     (
+                       cell.row === self.hoveredCell.row &&
+                       cell.col <= self.hoveredCell.col
+                     )
+                   );
       if (active === true) {
         el.classList.add('active');
       } else {
@@ -256,7 +273,7 @@ function MediumEditorTable() {
     }
 
     this.base.insertHTML(
-      '<table className="medium-editor-table" id="medium-editor-table">' +
+      '<table class="medium-editor-table" id="medium-editor-table">' +
       '<tbody>' +
       html +
       '</tbody>' +
@@ -275,7 +292,7 @@ function MediumEditorTable() {
 
     [].forEach.call(this.base.elements, function (el) {
       el.addEventListener('keydown', function (e) {
-        var el = getSelectionStart(),
+        var el = getSelectionStart(self.base.options.ownerDocument),
             row = row,
             table = table;
 
@@ -315,5 +332,3 @@ function MediumEditorTable() {
     tbody.appendChild(tr);
   };
 }(window, document));
-
-module.exports = MediumEditorTable;
