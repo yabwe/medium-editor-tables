@@ -40,7 +40,10 @@
     "load-grunt-config": "^0.16.0",
     "time-grunt": "^1.0.0"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "grunt test --verbose",
+    "start": "open ./demo/index.html"
+  },
   "dependencies": {
     "medium-editor": "^2.3.0"
   }

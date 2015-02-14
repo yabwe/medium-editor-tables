@@ -1,9 +1,12 @@
-js:
-  - 'jscs'
-  - 'concat'
+test:
   - 'jshint'
   - 'uglify'
   - jasmine
+
+js:
+  - 'jscs'
+  - 'concat'
+  - 'test'
 
 css:
   - 'sass'
