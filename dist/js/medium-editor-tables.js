@@ -294,8 +294,7 @@ MediumEditorTable.prototype = {
       '<tbody>' +
       html +
       '</tbody>' +
-      '</table>' +
-      '<p><br /></p>'
+      '</table>'
     );
 
     var table = this.base.options.ownerDocument
