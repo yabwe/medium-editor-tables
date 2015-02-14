@@ -66,11 +66,16 @@ MediumEditorTable.prototype = {
     var html = '';
     var x;
     var y;
+    var text = window.getSelection().toString();
 
     for (y = 0; y <= rows; y++) {
       html += '<tr>';
       for (x = 0; x <= cols; x++) {
-        html += '<td><br /></td>';
+        if (y === 0 && x === 0) {
+          html += '<td>' + text + '</td>';
+        } else {
+          html += '<td><br /></td>';
+        }
       }
       html += '</tr>';
     }

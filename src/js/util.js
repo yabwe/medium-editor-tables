@@ -1,4 +1,4 @@
-function getSelectionStart (doc) {
+function getSelectionStart(doc) {
   var node = doc.getSelection().anchorNode,
       startNode = (node && node.nodeType === 3 ? node.parentNode : node);
   return startNode;
