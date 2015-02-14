@@ -1,5 +1,7 @@
 # MediumEditor Tables
 
+[![Build Status](https://travis-ci.org/daviferreira/medium-editor-tables.svg)](https://travis-ci.org/daviferreira/medium-editor-tables)
+
 ## Usage
 
 ## Development
