@@ -1,7 +1,7 @@
 function MediumEditorTable () {
   this.parent = true;
   this.hasForm = true;
-  this.showGrid = false;
+  this.isFormVisible = false;
 
   this.createButton();
 }
@@ -16,11 +16,11 @@ MediumEditorTable.prototype = {
     if (!this.builder) {
       this.builder = new Builder({
         onClick: function (cols, rows) {
-          this._insertTable(cols, rows);
+          this.table.insert(cols, rows);
         }.bind(this),
         ownerDocument: this.base.options.ownerDocument
       });
-      this._bindTabBehavior();
+      this.table = new Table(this.base);
     }
 
     return this.builder.getElement();
@@ -38,13 +38,13 @@ MediumEditorTable.prototype = {
   },
 
   hide: function () {
-    this.showGrid = false;
+    this.isFormVisible = false;
     this.builder.hide();
     this.button.classList.remove('medium-editor-button-active');
   },
 
   show: function () {
-    this.showGrid = true;
+    this.isFormVisible = true;
     this.builder.show(this.button.offsetLeft);
     this.button.classList.add('medium-editor-button-active');
   },
@@ -58,85 +58,7 @@ MediumEditorTable.prototype = {
   _bindButtonClick: function () {
     this.button.addEventListener('click', function (e) {
       e.preventDefault();
-      this[this.showGrid === true ? 'hide' : 'show']();
+      this[this.isFormVisible === true ? 'hide' : 'show']();
     }.bind(this));
-  },
-
-  _insertTable: function (cols, rows) {
-    var html = '';
-    var x;
-    var y;
-    var text = window.getSelection().toString();
-
-    for (y = 0; y <= rows; y++) {
-      html += '<tr>';
-      for (x = 0; x <= cols; x++) {
-        if (y === 0 && x === 0) {
-          html += '<td>' + text + '</td>';
-        } else {
-          html += '<td><br /></td>';
-        }
-      }
-      html += '</tr>';
-    }
-
-    this.base.insertHTML(
-      '<table class="medium-editor-table" id="medium-editor-table">' +
-      '<tbody>' +
-      html +
-      '</tbody>' +
-      '</table>'
-    );
-
-    var table = this.base.options.ownerDocument
-                                 .getElementById('medium-editor-table');
-    table.removeAttribute('id');
-    placeCaretAtNode(table.querySelector('td'), true);
-  },
-
-  // TODO: break method
-  _bindTabBehavior: function () {
-    var self = this;
-
-    [].forEach.call(this.base.elements, function (el) {
-      el.addEventListener('keydown', function (e) {
-        var el = getSelectionStart(self.base.options.ownerDocument),
-            row = row,
-            table = table;
-
-        if (e.which === 9 && isInsideTable(el)) {
-          e.preventDefault();
-          e.stopPropagation();
-          el = getParentOf(el, 'td');
-          row = getParentOf(el, 'tr');
-          table = getParentOf(el, 'table');
-          if (e.shiftKey) {
-            placeCaretAtNode(
-              el.previousSibling || getPreviousRowLastCell(row),
-              true
-            );
-          } else {
-            if (isLastCell(el, row, table)) {
-              self._insertRow(
-                getParentOf(el, 'tbody'),
-                row.cells.length
-              );
-            }
-            placeCaretAtNode(el);
-          }
-        }
-      });
-    });
-  },
-
-  _insertRow: function (tbody, cols) {
-    var tr = document.createElement('tr'),
-        html = '',
-        i;
-    for (i = 0; i < cols; i += 1) {
-      html += '<td><br /></td>';
-    }
-    tr.innerHTML = html;
-    tbody.appendChild(tr);
   }
 };

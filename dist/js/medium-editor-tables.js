@@ -11,6 +11,16 @@
 
   'use strict';
 
+function getSelectionText() {
+  if (window.getSelection) {
+    return window.getSelection().toString();
+  }
+  if (document.selection && document.selection.type != 'Control') {
+    return document.selection.createRange().text;
+  }
+  return '';
+}
+
 function getSelectionStart(doc) {
   var node = doc.getSelection().anchorNode,
       startNode = (node && node.nodeType === 3 ? node.parentNode : node);
@@ -224,76 +234,22 @@ Builder.prototype = {
   }
 };
 
-
-function MediumEditorTable () {
-  this.parent = true;
-  this.hasForm = true;
-  this.showGrid = false;
-
-  this.createButton();
+function Table(editor) {
+  return this.init(editor);
 }
 
-MediumEditorTable.prototype = {
-  createButton: function () {
-    this._createButtonElement();
-    this._bindButtonClick();
+Table.prototype = {
+  init: function (editor) {
+    this._editor = editor;
+    this._bindTabBehavior();
   },
 
-  getForm: function() {
-    if (!this.builder) {
-      this.builder = new Builder({
-        onClick: function (cols, rows) {
-          this._insertTable(cols, rows);
-        }.bind(this),
-        ownerDocument: this.base.options.ownerDocument
-      });
-      this._bindTabBehavior();
-    }
-
-    return this.builder.getElement();
-  },
-
-  getButton: function () {
-    if (this.base.options.buttonLabels === 'fontawesome') {
-      this.button.innerHTML = '<i class="fa fa-table"></i>';
-    }
-    return this.button;
-  },
-
-  onHide: function () {
-    this.hide();
-  },
-
-  hide: function () {
-    this.showGrid = false;
-    this.builder.hide();
-    this.button.classList.remove('medium-editor-button-active');
-  },
-
-  show: function () {
-    this.showGrid = true;
-    this.builder.show(this.button.offsetLeft);
-    this.button.classList.add('medium-editor-button-active');
-  },
-
-  _createButtonElement: function () {
-    this.button = document.createElement('button');
-    this.button.className = 'medium-editor-action';
-    this.button.innerHTML = 'tbl';
-  },
-
-  _bindButtonClick: function () {
-    this.button.addEventListener('click', function (e) {
-      e.preventDefault();
-      this[this.showGrid === true ? 'hide' : 'show']();
-    }.bind(this));
-  },
-
-  _insertTable: function (cols, rows) {
+  // TODO: break method
+  insert: function (cols, rows) {
     var html = '';
     var x;
     var y;
-    var text = window.getSelection().toString();
+    var text = getSelectionText();
 
     for (y = 0; y <= rows; y++) {
       html += '<tr>';
@@ -307,7 +263,7 @@ MediumEditorTable.prototype = {
       html += '</tr>';
     }
 
-    this.base.insertHTML(
+    this._editor.insertHTML(
       '<table class="medium-editor-table" id="medium-editor-table">' +
       '<tbody>' +
       html +
@@ -315,7 +271,7 @@ MediumEditorTable.prototype = {
       '</table>'
     );
 
-    var table = this.base.options.ownerDocument
+    var table = this._editor.options.ownerDocument
                                  .getElementById('medium-editor-table');
     table.removeAttribute('id');
     placeCaretAtNode(table.querySelector('td'), true);
@@ -325,9 +281,9 @@ MediumEditorTable.prototype = {
   _bindTabBehavior: function () {
     var self = this;
 
-    [].forEach.call(this.base.elements, function (el) {
+    [].forEach.call(this._editor.elements, function (el) {
       el.addEventListener('keydown', function (e) {
-        var el = getSelectionStart(self.base.options.ownerDocument),
+        var el = getSelectionStart(self._editor.options.ownerDocument),
             row = row,
             table = table;
 
@@ -365,6 +321,71 @@ MediumEditorTable.prototype = {
     }
     tr.innerHTML = html;
     tbody.appendChild(tr);
+  }
+};
+
+function MediumEditorTable () {
+  this.parent = true;
+  this.hasForm = true;
+  this.isFormVisible = false;
+
+  this.createButton();
+}
+
+MediumEditorTable.prototype = {
+  createButton: function () {
+    this._createButtonElement();
+    this._bindButtonClick();
+  },
+
+  getForm: function() {
+    if (!this.builder) {
+      this.builder = new Builder({
+        onClick: function (cols, rows) {
+          this.table.insert(cols, rows);
+        }.bind(this),
+        ownerDocument: this.base.options.ownerDocument
+      });
+      this.table = new Table(this.base);
+    }
+
+    return this.builder.getElement();
+  },
+
+  getButton: function () {
+    if (this.base.options.buttonLabels === 'fontawesome') {
+      this.button.innerHTML = '<i class="fa fa-table"></i>';
+    }
+    return this.button;
+  },
+
+  onHide: function () {
+    this.hide();
+  },
+
+  hide: function () {
+    this.isFormVisible = false;
+    this.builder.hide();
+    this.button.classList.remove('medium-editor-button-active');
+  },
+
+  show: function () {
+    this.isFormVisible = true;
+    this.builder.show(this.button.offsetLeft);
+    this.button.classList.add('medium-editor-button-active');
+  },
+
+  _createButtonElement: function () {
+    this.button = document.createElement('button');
+    this.button.className = 'medium-editor-action';
+    this.button.innerHTML = 'tbl';
+  },
+
+  _bindButtonClick: function () {
+    this.button.addEventListener('click', function (e) {
+      e.preventDefault();
+      this[this.isFormVisible === true ? 'hide' : 'show']();
+    }.bind(this));
   }
 };
 

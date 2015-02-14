@@ -1,3 +1,13 @@
+function getSelectionText() {
+  if (window.getSelection) {
+    return window.getSelection().toString();
+  }
+  if (document.selection && document.selection.type != 'Control') {
+    return document.selection.createRange().text;
+  }
+  return '';
+}
+
 function getSelectionStart(doc) {
   var node = doc.getSelection().anchorNode,
       startNode = (node && node.nodeType === 3 ? node.parentNode : node);
