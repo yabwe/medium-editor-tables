@@ -35,6 +35,7 @@
     "CHANGES.md"
   ],
   "dependencies": {
-    "medium-editor": "~2.3.0"
+    "medium-editor": "~2.3.0",
+    "normalize.css": "~3.0.2"
   }
 }
