@@ -1,11 +1,13 @@
-function Grid (el, callback) {
-  return this.init(el, callback);
+function Grid (el, callback, rows, columns) {
+  return this.init(el, callback, rows, columns);
 }
 
 Grid.prototype = {
-  init: function (el, callback) {
+  init: function (el, callback, rows, columns) {
     this._root = el;
     this._callback = callback;
+    this.rows = rows;
+    this.columns = columns;
     return this._render();
   },
 
@@ -33,9 +35,9 @@ Grid.prototype = {
   _generateCells: function () {
     this._cells = [];
 
-    for (var i = 0; i < 100; i++) {
-      var col = i % 10;
-      var row = Math.floor(i/10);
+    for (var i = 0; i < this.rows * this.columns; i++) {
+      var col = i % this.columns;
+      var row = Math.floor(i / this.rows);
 
       this._cells.push({
         col: col,

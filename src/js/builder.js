@@ -8,7 +8,7 @@ Builder.prototype = {
     this._doc = options.ownerDocument || document;
     this._root = this._doc.createElement('div');
     this._root.className = 'medium-editor-table-builder';
-    this.grid = new Grid(this._root, this.options.onClick);
+    this.grid = new Grid(this._root, this.options.onClick, this.options.rows, this.options.columns);
   },
 
   getElement: function () {
