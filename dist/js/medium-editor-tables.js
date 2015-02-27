@@ -83,14 +83,16 @@ function getParentOf(el, tagTarget) {
   }
 }
 
-function Grid (el, callback) {
-  return this.init(el, callback);
+function Grid (el, callback, rows, columns) {
+  return this.init(el, callback, rows, columns);
 }
 
 Grid.prototype = {
-  init: function (el, callback) {
+  init: function (el, callback, rows, columns) {
     this._root = el;
     this._callback = callback;
+    this.rows = rows;
+    this.columns = columns;
     return this._render();
   },
 
@@ -101,8 +103,8 @@ Grid.prototype = {
   markCells: function () {
     [].forEach.call(this._cellsElements, function(el) {
       var cell = {
-        col: parseInt(el.dataset.col, 10),
-        row: parseInt(el.dataset.row, 10)
+        col: parseInt(el.dataset.col, 50),
+        row: parseInt(el.dataset.row, 50)
       };
       var active = this._currentCell &&
                    cell.row <= this._currentCell.row  &&
@@ -118,9 +120,9 @@ Grid.prototype = {
   _generateCells: function () {
     this._cells = [];
 
-    for (var i = 0; i < 100; i++) {
-      var col = i % 10;
-      var row = Math.floor(i/10);
+    for (var i = 0; i < this.rows * this.columns; i++) {
+      var col = i % this.columns;
+      var row = Math.floor(i / this.rows);
 
       this._cells.push({
         col: col,
@@ -174,11 +176,11 @@ Grid.prototype = {
 
       timer = setTimeout(function () {
         self._currentCell = {
-          col: parseInt(dataset.col, 10),
-          row: parseInt(dataset.row, 10)
+          col: parseInt(dataset.col, 50),
+          row: parseInt(dataset.row, 50)
         };
         self.markCells();
-      }, 10);
+      }, 50);
     });
   },
 
@@ -201,7 +203,7 @@ Builder.prototype = {
     this._doc = options.ownerDocument || document;
     this._root = this._doc.createElement('div');
     this._root.className = 'medium-editor-table-builder';
-    this.grid = new Grid(this._root, this.options.onClick);
+    this.grid = new Grid(this._root, this.options.onClick, this.options.rows, this.options.columns);
   },
 
   getElement: function () {
@@ -332,10 +334,12 @@ Table.prototype = {
   }
 };
 
-function MediumEditorTable () {
+function MediumEditorTable (rows, columns) {
   this.parent = true;
   this.hasForm = true;
   this.isFormVisible = false;
+  this.rows = rows || 10;
+  this.columns = columns || 10;
 
   this.createButton();
 }
@@ -353,7 +357,9 @@ MediumEditorTable.prototype = {
           this.table.insert(rows, cols);
           this.hide();
         }.bind(this),
-        ownerDocument: this.base.options.ownerDocument
+        ownerDocument: this.base.options.ownerDocument,
+        rows: this.rows,
+        columns: this.columns
       });
       this.table = new Table(this.base);
     }
@@ -382,6 +388,11 @@ MediumEditorTable.prototype = {
     this.isFormVisible = true;
     this.builder.show(this.button.offsetLeft);
     this.button.classList.add('medium-editor-button-active');
+    var elements = document.getElementsByClassName('medium-editor-table-builder-grid');
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.height = (16 * this.rows + 2) + 'px';
+      elements[i].style.width = (16 * this.columns + 2) + 'px';
+    }
   },
 
   _createButtonElement: function () {
