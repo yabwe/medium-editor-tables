@@ -1,7 +1,9 @@
-function MediumEditorTable () {
+function MediumEditorTable (rows, columns) {
   this.parent = true;
   this.hasForm = true;
   this.isFormVisible = false;
+  this.rows = rows || 10;
+  this.columns = columns || 10;
 
   this.createButton();
 }
@@ -19,7 +21,9 @@ MediumEditorTable.prototype = {
           this.table.insert(rows, cols);
           this.hide();
         }.bind(this),
-        ownerDocument: this.base.options.ownerDocument
+        ownerDocument: this.base.options.ownerDocument,
+        rows: this.rows,
+        columns: this.columns
       });
       this.table = new Table(this.base);
     }
@@ -48,6 +52,11 @@ MediumEditorTable.prototype = {
     this.isFormVisible = true;
     this.builder.show(this.button.offsetLeft);
     this.button.classList.add('medium-editor-button-active');
+    var elements = document.getElementsByClassName('medium-editor-table-builder-grid');
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.height = (16 * this.rows + 2) + 'px';
+      elements[i].style.width = (16 * this.columns + 2) + 'px';
+    }
   },
 
   _createButtonElement: function () {
