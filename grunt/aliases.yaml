@@ -2,6 +2,7 @@ test:
   - jscs
   - jshint
   - jasmine
+  - coveralls
 
 js:
   - concat

@@ -13,7 +13,19 @@ module.exports = {
       template: require('grunt-template-jasmine-istanbul'),
       templateOptions: {
         coverage: 'reports/jasmine/coverage.json',
-        report: 'coverage'
+        report: [
+          {
+            type: 'lcov',
+            options: {
+              dir: 'reports/jasmine/lcov'
+            }
+          }, {
+            type: 'html',
+            options: {
+              dir: 'coverage'
+            }
+          }
+        ]
       },
       summary: true
     }
