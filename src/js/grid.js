@@ -16,8 +16,8 @@ Grid.prototype = {
   markCells: function () {
     [].forEach.call(this._cellsElements, function(el) {
       var cell = {
-        col: parseInt(el.dataset.col, 10),
-        row: parseInt(el.dataset.row, 10)
+        col: parseInt(el.dataset.col, 50),
+        row: parseInt(el.dataset.row, 50)
       };
       var active = this._currentCell &&
                    cell.row <= this._currentCell.row  &&
@@ -34,8 +34,8 @@ Grid.prototype = {
     this._cells = [];
 
     for (var i = 0; i < 100; i++) {
-      var col = i % 10;
-      var row = Math.floor(i/10);
+      var col = i % 50;
+      var row = Math.floor(i/50);
 
       this._cells.push({
         col: col,
@@ -89,11 +89,11 @@ Grid.prototype = {
 
       timer = setTimeout(function () {
         self._currentCell = {
-          col: parseInt(dataset.col, 10),
-          row: parseInt(dataset.row, 10)
+          col: parseInt(dataset.col, 50),
+          row: parseInt(dataset.row, 50)
         };
         self.markCells();
-      }, 10);
+      }, 50);
     });
   },
 
