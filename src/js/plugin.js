@@ -1,10 +1,11 @@
-function MediumEditorTable (rows, columns) {
+function MediumEditorTable (options) {
+  this.options = extend(options, {
+    columns: 10,
+    rows: 10
+  });
   this.parent = true;
   this.hasForm = true;
   this.isFormVisible = false;
-  this.rows = rows || 10;
-  this.columns = columns || 10;
-
   this.createButton();
 }
 
@@ -17,13 +18,13 @@ MediumEditorTable.prototype = {
   getForm: function() {
     if (!this.builder) {
       this.builder = new Builder({
-        onClick: function (rows, cols) {
-          this.table.insert(rows, cols);
+        onClick: function (rows, columns) {
+          this.table.insert(rows, columns);
           this.hide();
         }.bind(this),
         ownerDocument: this.base.options.ownerDocument,
-        rows: this.rows,
-        columns: this.columns
+        rows: this.options.rows,
+        columns: this.options.columns
       });
       this.table = new Table(this.base);
     }
@@ -54,8 +55,9 @@ MediumEditorTable.prototype = {
     this.button.classList.add('medium-editor-button-active');
     var elements = document.getElementsByClassName('medium-editor-table-builder-grid');
     for (var i = 0; i < elements.length; i++) {
-      elements[i].style.height = (16 * this.rows + 2) + 'px';
-      elements[i].style.width = (16 * this.columns + 2) + 'px';
+      // TODO: what is 16 and what is 2?
+      elements[i].style.height = (16 * this.options.rows + 2) + 'px';
+      elements[i].style.width = (16 * this.options.columns + 2) + 'px';
     }
   },
 

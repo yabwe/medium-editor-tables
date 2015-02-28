@@ -18,12 +18,12 @@ Grid.prototype = {
   markCells: function () {
     [].forEach.call(this._cellsElements, function(el) {
       var cell = {
-        col: parseInt(el.dataset.col, 50),
-        row: parseInt(el.dataset.row, 50)
+        column: parseInt(el.dataset.column, 10),
+        row: parseInt(el.dataset.row, 10)
       };
       var active = this._currentCell &&
                    cell.row <= this._currentCell.row  &&
-                   cell.col <= this._currentCell.col;
+                   cell.column <= this._currentCell.column;
       if (active === true) {
         el.classList.add('active');
       } else {
@@ -36,11 +36,11 @@ Grid.prototype = {
     this._cells = [];
 
     for (var i = 0; i < this.rows * this.columns; i++) {
-      var col = i % this.columns;
+      var column = i % this.columns;
       var row = Math.floor(i / this.rows);
 
       this._cells.push({
-        col: col,
+        column: column,
         row: row,
         active: false
       });
@@ -61,7 +61,7 @@ Grid.prototype = {
       html += '<a href="#" class="medium-editor-table-builder-cell' +
               (cell.active === true ? ' active' : '') +
               '" ' + 'data-row="' + cell.row +
-              '" data-col="' + cell.col + '">';
+              '" data-column="' + cell.column + '">';
       html += '</a>';
     });
     return html;
@@ -91,8 +91,8 @@ Grid.prototype = {
 
       timer = setTimeout(function () {
         self._currentCell = {
-          col: parseInt(dataset.col, 50),
-          row: parseInt(dataset.row, 50)
+          column: parseInt(dataset.column, 10),
+          row: parseInt(dataset.row, 10)
         };
         self.markCells();
       }, 50);
@@ -103,7 +103,7 @@ Grid.prototype = {
     var self = this;
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      self._callback(this.dataset.row, this.dataset.col);
+      self._callback(this.dataset.row, this.dataset.column);
     });
   }
 };

@@ -1,3 +1,14 @@
+function extend(dest, source) {
+  var prop;
+  dest = dest || {};
+  for (prop in source) {
+    if (source.hasOwnProperty(prop) && !dest.hasOwnProperty(prop)) {
+      dest[prop] = source[prop];
+    }
+  }
+  return dest;
+}
+
 function getSelectionText(doc) {
   if (doc.getSelection) {
     return doc.getSelection().toString();

@@ -11,6 +11,17 @@
 
   'use strict';
 
+function extend(dest, source) {
+  var prop;
+  dest = dest || {};
+  for (prop in source) {
+    if (source.hasOwnProperty(prop) && !dest.hasOwnProperty(prop)) {
+      dest[prop] = source[prop];
+    }
+  }
+  return dest;
+}
+
 function getSelectionText(doc) {
   if (doc.getSelection) {
     return doc.getSelection().toString();
@@ -103,12 +114,12 @@ Grid.prototype = {
   markCells: function () {
     [].forEach.call(this._cellsElements, function(el) {
       var cell = {
-        col: parseInt(el.dataset.col, 50),
-        row: parseInt(el.dataset.row, 50)
+        column: parseInt(el.dataset.column, 10),
+        row: parseInt(el.dataset.row, 10)
       };
       var active = this._currentCell &&
                    cell.row <= this._currentCell.row  &&
-                   cell.col <= this._currentCell.col;
+                   cell.column <= this._currentCell.column;
       if (active === true) {
         el.classList.add('active');
       } else {
@@ -121,11 +132,11 @@ Grid.prototype = {
     this._cells = [];
 
     for (var i = 0; i < this.rows * this.columns; i++) {
-      var col = i % this.columns;
+      var column = i % this.columns;
       var row = Math.floor(i / this.rows);
 
       this._cells.push({
-        col: col,
+        column: column,
         row: row,
         active: false
       });
@@ -146,7 +157,7 @@ Grid.prototype = {
       html += '<a href="#" class="medium-editor-table-builder-cell' +
               (cell.active === true ? ' active' : '') +
               '" ' + 'data-row="' + cell.row +
-              '" data-col="' + cell.col + '">';
+              '" data-column="' + cell.column + '">';
       html += '</a>';
     });
     return html;
@@ -176,8 +187,8 @@ Grid.prototype = {
 
       timer = setTimeout(function () {
         self._currentCell = {
-          col: parseInt(dataset.col, 50),
-          row: parseInt(dataset.row, 50)
+          column: parseInt(dataset.column, 10),
+          row: parseInt(dataset.row, 10)
         };
         self.markCells();
       }, 50);
@@ -188,7 +199,7 @@ Grid.prototype = {
     var self = this;
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      self._callback(this.dataset.row, this.dataset.col);
+      self._callback(this.dataset.row, this.dataset.column);
     });
   }
 };
@@ -203,7 +214,12 @@ Builder.prototype = {
     this._doc = options.ownerDocument || document;
     this._root = this._doc.createElement('div');
     this._root.className = 'medium-editor-table-builder';
-    this.grid = new Grid(this._root, this.options.onClick, this.options.rows, this.options.columns);
+    this.grid = new Grid(
+      this._root,
+      this.options.onClick,
+      this.options.rows,
+      this.options.columns
+    );
   },
 
   getElement: function () {
@@ -212,7 +228,7 @@ Builder.prototype = {
 
   hide: function () {
     this._root.style.display = '';
-    this.grid.setCurrentCell({ col: -1, row: -1 });
+    this.grid.setCurrentCell({ column: -1, row: -1 });
     this.grid.markCells();
   },
 
@@ -334,13 +350,14 @@ Table.prototype = {
   }
 };
 
-function MediumEditorTable (rows, columns) {
+function MediumEditorTable (options) {
+  this.options = extend(options, {
+    columns: 10,
+    rows: 10
+  });
   this.parent = true;
   this.hasForm = true;
   this.isFormVisible = false;
-  this.rows = rows || 10;
-  this.columns = columns || 10;
-
   this.createButton();
 }
 
@@ -353,13 +370,13 @@ MediumEditorTable.prototype = {
   getForm: function() {
     if (!this.builder) {
       this.builder = new Builder({
-        onClick: function (rows, cols) {
-          this.table.insert(rows, cols);
+        onClick: function (rows, columns) {
+          this.table.insert(rows, columns);
           this.hide();
         }.bind(this),
         ownerDocument: this.base.options.ownerDocument,
-        rows: this.rows,
-        columns: this.columns
+        rows: this.options.rows,
+        columns: this.options.columns
       });
       this.table = new Table(this.base);
     }
@@ -390,8 +407,9 @@ MediumEditorTable.prototype = {
     this.button.classList.add('medium-editor-button-active');
     var elements = document.getElementsByClassName('medium-editor-table-builder-grid');
     for (var i = 0; i < elements.length; i++) {
-      elements[i].style.height = (16 * this.rows + 2) + 'px';
-      elements[i].style.width = (16 * this.columns + 2) + 'px';
+      // TODO: what is 16 and what is 2?
+      elements[i].style.height = (16 * this.options.rows + 2) + 'px';
+      elements[i].style.width = (16 * this.options.columns + 2) + 'px';
     }
   },
 

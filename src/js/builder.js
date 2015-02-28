@@ -8,7 +8,12 @@ Builder.prototype = {
     this._doc = options.ownerDocument || document;
     this._root = this._doc.createElement('div');
     this._root.className = 'medium-editor-table-builder';
-    this.grid = new Grid(this._root, this.options.onClick, this.options.rows, this.options.columns);
+    this.grid = new Grid(
+      this._root,
+      this.options.onClick,
+      this.options.rows,
+      this.options.columns
+    );
   },
 
   getElement: function () {
@@ -17,7 +22,7 @@ Builder.prototype = {
 
   hide: function () {
     this._root.style.display = '';
-    this.grid.setCurrentCell({ col: -1, row: -1 });
+    this.grid.setCurrentCell({ column: -1, row: -1 });
     this.grid.markCells();
   },
 
