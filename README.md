@@ -5,6 +5,7 @@
 [![Travis build status](https://travis-ci.org/daviferreira/medium-editor-tables.png?branch=master)](https://travis-ci.org/daviferreira/medium-editor-tables)
 [![dependencies](https://david-dm.org/daviferreira/medium-editor-tables.png)](https://david-dm.org/daviferreira/medium-editor-tables)
 [![devDependency Status](https://david-dm.org/daviferreira/medium-editor-tables/dev-status.png)](https://david-dm.org/daviferreira/medium-editor-tables#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/daviferreira/medium-editor-tables/badge.svg)](https://coveralls.io/r/daviferreira/medium-editor-tables)
 
 MediumEditor Tables is an extension to add a table button/behavior to [MediumEditor](https://github.com/daviferreira/medium-editor).
 
