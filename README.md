@@ -11,7 +11,7 @@ MediumEditor Tables is an extension to add a table button/behavior to [MediumEdi
 
 --
 
-![meditor-tables mp4](https://cloud.githubusercontent.com/assets/38787/6200245/5528756c-b46f-11e4-9d52-fdd7b8dbc864.gif)
+![meditor-tables mp4](https://cloud.githubusercontent.com/assets/38787/6430614/8ff048c0-c011-11e4-8e2c-09ff773d2f78.gif)
 
 --
 
@@ -62,6 +62,24 @@ On your app, link the style and the script and initialize MediumEditor with the 
   </script>
 </body>
 </html>
+```
+
+## Initialization options
+
+* __rows__: maximum number of rows. Default: 10.
+* __columns__: maximum number of columns. Default: 10.
+
+### Example
+
+```javascript
+...
+    extensions: {
+      'table': new MediumEditorTable({
+        rows: 40,
+        columns: 40
+      })
+    }
+...
 ```
 
 ## Development
