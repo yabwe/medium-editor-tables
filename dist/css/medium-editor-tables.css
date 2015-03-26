@@ -1,7 +1,8 @@
 .medium-editor-table-builder {
-  top: 101%;
+  display: none;
+  position: absolute;
   left: 0;
-  position: absolute; }
+  top: 101%; }
   .medium-editor-table-builder * {
     box-sizing: border-box; }
 
@@ -12,7 +13,7 @@
   overflow: hidden;
   width: 162px; }
 
-.medium-editor-toolbar-form .medium-editor-table-builder-cell {
+.medium-editor-table-builder-cell {
   background-color: #333;
   border: 1px solid #000;
   display: block;
@@ -20,10 +21,10 @@
   height: 16px;
   margin: 0;
   width: 16px; }
-  .medium-editor-toolbar-form .medium-editor-table-builder-cell.active {
+  .medium-editor-table-builder-cell.active {
     background-color: #ccc; }
 
-.medium-editor-toolbar-form .medium-editor-table-builder-cell:hover {
+.medium-editor-table-builder-cell:hover {
   background-color: #ccc; }
 
 .medium-editor-table {

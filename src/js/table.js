@@ -14,7 +14,7 @@ Table.prototype = {
   insert: function (rows, cols) {
     var html = this._html(rows, cols);
 
-    this._editor.insertHTML(
+    this._editor.pasteHTML(
       '<table class="medium-editor-table" id="medium-editor-table"' +
       ' width="100%">' +
       '<tbody>' +

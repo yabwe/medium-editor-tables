@@ -15,12 +15,16 @@ MediumEditorTable.prototype = {
     this._bindButtonClick();
   },
 
+  isDisplayed: function () {
+    return this.isFormVisible;
+  },
+
   getForm: function() {
     if (!this.builder) {
       this.builder = new Builder({
         onClick: function (rows, columns) {
           this.table.insert(rows, columns);
-          this.hide();
+          this.hideForm();
         }.bind(this),
         ownerDocument: this.base.options.ownerDocument,
         rows: this.options.rows,
@@ -40,10 +44,10 @@ MediumEditorTable.prototype = {
   },
 
   onHide: function () {
-    this.hide();
+    this.hideForm();
   },
 
-  hide: function () {
+  hideForm: function () {
     this.isFormVisible = false;
     this.builder.hide();
     this.button.classList.remove('medium-editor-button-active');
@@ -70,7 +74,7 @@ MediumEditorTable.prototype = {
   _bindButtonClick: function () {
     this.button.addEventListener('click', function (e) {
       e.preventDefault();
-      this[this.isFormVisible === true ? 'hide' : 'show']();
+      this[this.isFormVisible === true ? 'hideForm' : 'show']();
     }.bind(this));
   }
 };

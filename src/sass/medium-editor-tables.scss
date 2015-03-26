@@ -1,7 +1,8 @@
 .medium-editor-table-builder {
-  top: 101%;
-  left: 0;
+  display: none;
   position: absolute;
+  left: 0;
+  top: 101%;
 
   * {
     box-sizing: border-box;
@@ -16,7 +17,6 @@
   width: 162px;
 }
 
-.medium-editor-toolbar-form
 .medium-editor-table-builder-cell {
   background-color: #333;
   border: 1px solid #000;
@@ -31,7 +31,6 @@
   }
 }
 
-.medium-editor-toolbar-form
 .medium-editor-table-builder-cell:hover {
   background-color: #ccc;
 }
