@@ -1,6 +1,6 @@
 {
   "name": "medium-editor-tables",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Davi Ferreira <hi@daviferreira.com>",
   "description": "MediumEditor extension to allow tables.",
   "main": "src/js/medium-editor-tables.js",
