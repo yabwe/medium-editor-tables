@@ -20,7 +20,10 @@ Table.prototype = {
       '<tbody>' +
       html +
       '</tbody>' +
-      '</table>'
+      '</table>', {
+        cleanAttrs: [],
+        cleanTags: []
+      }
     );
 
     var table = this._doc.getElementById('medium-editor-table');

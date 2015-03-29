@@ -46,6 +46,6 @@
     "start": "open ./demo/index.html"
   },
   "dependencies": {
-    "medium-editor": "^4.0.0"
+    "medium-editor": "^4.1.0"
   }
 }
