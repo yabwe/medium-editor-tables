@@ -22,5 +22,29 @@ describe('Util TestCase', function () {
         expect(getSelectionStart(document)).toEqual(this.div);
       });
     });
+
+    describe('#isInsideElementOfTag', function () {
+      it('should return false when node is invalid', function () {
+        expect(isInsideElementOfTag(undefined, 'p')).toBe(false);
+      });
+
+      it('should return true when parent element has specified tag', function () {
+        var parentEl = document.createElement('div');
+        var childEl = document.createElement('p');
+        parentEl.appendChild(childEl);
+        document.body.appendChild(parentEl);
+        expect(isInsideElementOfTag(childEl, 'div')).toBe(true);
+        document.body.removeChild(parentEl);
+      });
+
+      it('should return true when parent element does not have specified tag', function () {
+        var parentEl = document.createElement('div');
+        var childEl = document.createElement('p');
+        parentEl.appendChild(childEl);
+        document.body.appendChild(parentEl);
+        expect(isInsideElementOfTag(childEl, 'span')).toBe(false);
+        document.body.removeChild(parentEl);
+      });
+    });
   });
 });
