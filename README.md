@@ -9,6 +9,8 @@
 
 MediumEditor Tables is an extension to add a table button/behavior to [MediumEditor](https://github.com/daviferreira/medium-editor).
 
+Demo: [http://daviferreira.github.io/medium-editor-tables/](http://daviferreira.github.io/medium-editor-tables/)
+
 --
 
 ![meditor-tables mp4](https://cloud.githubusercontent.com/assets/38787/6430614/8ff048c0-c011-11e4-8e2c-09ff773d2f78.gif)
