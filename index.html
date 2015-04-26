@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Medium Editor Tables</title>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet"
+    href="bower_components/normalize.css/normalize.css" />
+  <link rel="stylesheet"
+    href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+  <link rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic" />
+  <link rel="stylesheet"
+    href="bower_components/medium-editor/dist/css/medium-editor.css" />
+  <link rel="stylesheet"
+    href="bower_components/medium-editor/dist/css/themes/default.css" />
+  <link rel="stylesheet"
+    href="bower_components/medium-editor-tables/dist/css/medium-editor-tables.css" />
+  <link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>MediumEditor Tables</h1>
+    <div class="editable">
+      <p>
+        He always thought of the sea as 'la mar' which is what people call
+        her in Spanish when they love her. Sometimes those who love her say
+        bad things of her but they are always said as though she were a woman.
+        Some of the younger fishermen, those who used buoys as floats for their
+        lines and had motorboats, bought when the shark livers had brought much
+        money, spoke of her as 'el mar' which is masculine.They spoke of her as
+        a contestant or a place or even an enemy. But the old man always thought
+        of her as feminine and as something that gave or withheld great favours,
+        and if she did wild or wicked things it was because she could not help
+        them. The moon affects her as it does a woman, he thought.
+      </p>
+    </div>
+  </div>
+
+  <script type="text/javascript"
+    src="bower_components/medium-editor/dist/js/medium-editor.js">
+  </script>
+  <script type="text/javascript" src="bower_components/medium-editor-tables/dist/js/medium-editor-tables.js">
+  </script>
+
+  <script type="text/javascript" charset="utf-8">
+  var editor = new MediumEditor('.editable', {
+    buttonLabels: 'fontawesome',
+    buttons: [
+      'header1',
+      'bold',
+      'italic',
+      'unorderedlist',
+      'orderedlist',
+      'table'
+    ],
+    extensions: {
+      'table': new MediumEditorTable()
+    },
+    staticToolbar: true,
+    stickyToolbar: true
+  });
+  </script>
+</body>
+</html>

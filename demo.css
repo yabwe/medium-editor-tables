@@ -1,0 +1,34 @@
+::-moz-selection {
+  background: #a0ced9;
+  color: #fff; }
+
+::selection {
+  background: #a0ced9;
+  color: #fff; }
+
+body {
+  background-color: #fafafa;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.6; }
+
+p:first-child {
+  margin-top: 0; }
+p:last-child {
+  margin-bottom: 0; }
+
+h1 {
+  margin-bottom: 60px;
+  text-align: center; }
+
+.container {
+  margin: 60px auto;
+  width: 600px; }
+
+.editable {
+  background-color: #fff;
+  border: 1px solid #abf4b4;
+  padding: 30px; }
+  .editable:focus {
+    outline: none; }
