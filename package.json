@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "author": "Davi Ferreira <hi@daviferreira.com>",
   "description": "MediumEditor extension to allow tables.",
-  "main": "src/js/medium-editor-tables.js",
+  "main": "dist/js/medium-editor-tables.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/daviferreira/medium-editor-tables"
