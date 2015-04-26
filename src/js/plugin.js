@@ -1,4 +1,4 @@
-function MediumEditorTable (options) {
+function MediumEditorTable(options) {
   this.options = extend(options, {
     columns: 10,
     rows: 10
@@ -19,7 +19,7 @@ MediumEditorTable.prototype = {
     return this.isFormVisible;
   },
 
-  getForm: function() {
+  getForm: function () {
     if (!this.builder) {
       this.builder = new Builder({
         onClick: function (rows, columns) {

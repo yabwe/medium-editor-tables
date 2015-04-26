@@ -1,3 +1,3 @@
 module.exports = {
-  build: jsSourceFiles
+  build: jsSourceFiles.concat(['Gruntfile.js', 'grunt/*.js', 'spec/*.js'])
 };

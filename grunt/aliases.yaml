@@ -4,6 +4,10 @@ test:
   - jasmine
   - coveralls
 
+lint:
+  - jscs
+  - jshint
+
 js:
   - concat
   - test

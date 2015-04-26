@@ -6,9 +6,9 @@ global.jsSourceFiles = [
   'src/js/plugin.js'
 ];
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   require('load-grunt-config')(grunt, {
-    loadGruntTasks: { //can optionally pass options to load-grunt-tasks.  If you set to false, it will disable auto loading tasks.
+    loadGruntTasks: {
       pattern: [
         'grunt-*',
         '!grunt-template-jasmine-istanbul'

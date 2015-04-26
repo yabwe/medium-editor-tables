@@ -1,4 +1,4 @@
-function Grid (el, callback, rows, columns) {
+function Grid(el, callback, rows, columns) {
   return this.init(el, callback, rows, columns);
 }
 
@@ -16,13 +16,13 @@ Grid.prototype = {
   },
 
   markCells: function () {
-    [].forEach.call(this._cellsElements, function(el) {
+    [].forEach.call(this._cellsElements, function (el) {
       var cell = {
         column: parseInt(el.dataset.column, 10),
         row: parseInt(el.dataset.row, 10)
       };
       var active = this._currentCell &&
-                   cell.row <= this._currentCell.row  &&
+                   cell.row <= this._currentCell.row &&
                    cell.column <= this._currentCell.column;
       if (active === true) {
         el.classList.add('active');
@@ -57,7 +57,7 @@ Grid.prototype = {
   _cellsHTML: function () {
     var html = '';
     this._generateCells();
-    this._cells.map(function(cell) {
+    this._cells.map(function (cell) {
       html += '<a href="#" class="medium-editor-table-builder-cell' +
               (cell.active === true ? ' active' : '') +
               '" ' + 'data-row="' + cell.row +
@@ -74,7 +74,7 @@ Grid.prototype = {
   },
 
   _bindEvents: function () {
-    [].forEach.call(this._cellsElements, function(el) {
+    [].forEach.call(this._cellsElements, function (el) {
       this._onMouseEnter(el);
       this._onClick(el);
     }.bind(this));

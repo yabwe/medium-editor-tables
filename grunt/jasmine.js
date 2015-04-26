@@ -6,7 +6,7 @@ module.exports = {
       helpers: 'spec/helpers/*.js',
       styles: 'dist/css/*.css',
       junit: {
-        path: "reports/jasmine/",
+        path: 'reports/jasmine/',
         consolidate: true
       },
       keepRunner: true,

@@ -22,5 +22,5 @@ describe('Util TestCase', function () {
         expect(getSelectionStart(document)).toEqual(this.div);
       });
     });
-  })
+  });
 });

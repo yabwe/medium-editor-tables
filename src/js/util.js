@@ -20,8 +20,8 @@ function getSelectionText(doc) {
 }
 
 function getSelectionStart(doc) {
-  var node = doc.getSelection().anchorNode,
-      startNode = (node && node.nodeType === 3 ? node.parentNode : node);
+  var node = doc.getSelection().anchorNode;
+  var startNode = (node && node.nodeType === 3 ? node.parentNode : node);
   return startNode;
 }
 
@@ -48,8 +48,8 @@ function isInsideElementOfTag(node, tag) {
     return false;
   }
 
-  var parentNode = node.parentNode,
-      tagName = parentNode.tagName.toLowerCase();
+  var parentNode = node.parentNode;
+  var tagName = parentNode.tagName.toLowerCase();
 
   while (tagName !== 'body') {
     if (tagName === tag) {

@@ -33,7 +33,8 @@ Table.prototype = {
 
   _html: function (rows, cols) {
     var html = '';
-    var x, y;
+    var x;
+    var y;
     var text = getSelectionText(this._doc);
 
     for (x = 0; x <= rows; x++) {
@@ -56,8 +57,8 @@ Table.prototype = {
   },
 
   _onKeyDown: function (e) {
-    var el = getSelectionStart(this._doc),
-        table;
+    var el = getSelectionStart(this._doc);
+    var table;
 
     if (e.which === TAB_KEY_CODE && isInsideElementOfTag(el, 'table')) {
       e.preventDefault();
@@ -88,9 +89,10 @@ Table.prototype = {
   },
 
   _insertRow: function (tbody, cols) {
-    var tr = document.createElement('tr'),
-        html = '',
-        i;
+    var tr = document.createElement('tr');
+    var html = '';
+    var i;
+
     for (i = 0; i < cols; i += 1) {
       html += '<td><br /></td>';
     }

@@ -1,5 +1,5 @@
 module.exports = {
-  src: jsSourceFiles,
+  src: jsSourceFiles.concat(['Gruntfile.js', 'grunt/*.js', 'spec/*.js']),
   options: {
     config: '.jscsrc'
   }
