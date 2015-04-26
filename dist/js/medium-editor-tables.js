@@ -33,8 +33,8 @@ function getSelectionText(doc) {
 }
 
 function getSelectionStart(doc) {
-  var node = doc.getSelection().anchorNode,
-      startNode = (node && node.nodeType === 3 ? node.parentNode : node);
+  var node = doc.getSelection().anchorNode;
+  var startNode = (node && node.nodeType === 3 ? node.parentNode : node);
   return startNode;
 }
 
@@ -61,8 +61,8 @@ function isInsideElementOfTag(node, tag) {
     return false;
   }
 
-  var parentNode = node.parentNode,
-      tagName = parentNode.tagName.toLowerCase();
+  var parentNode = node.parentNode;
+  var tagName = parentNode.tagName.toLowerCase();
 
   while (tagName !== 'body') {
     if (tagName === tag) {
@@ -94,7 +94,7 @@ function getParentOf(el, tagTarget) {
   }
 }
 
-function Grid (el, callback, rows, columns) {
+function Grid(el, callback, rows, columns) {
   return this.init(el, callback, rows, columns);
 }
 
@@ -112,13 +112,13 @@ Grid.prototype = {
   },
 
   markCells: function () {
-    [].forEach.call(this._cellsElements, function(el) {
+    [].forEach.call(this._cellsElements, function (el) {
       var cell = {
         column: parseInt(el.dataset.column, 10),
         row: parseInt(el.dataset.row, 10)
       };
       var active = this._currentCell &&
-                   cell.row <= this._currentCell.row  &&
+                   cell.row <= this._currentCell.row &&
                    cell.column <= this._currentCell.column;
       if (active === true) {
         el.classList.add('active');
@@ -153,7 +153,7 @@ Grid.prototype = {
   _cellsHTML: function () {
     var html = '';
     this._generateCells();
-    this._cells.map(function(cell) {
+    this._cells.map(function (cell) {
       html += '<a href="#" class="medium-editor-table-builder-cell' +
               (cell.active === true ? ' active' : '') +
               '" ' + 'data-row="' + cell.row +
@@ -170,7 +170,7 @@ Grid.prototype = {
   },
 
   _bindEvents: function () {
-    [].forEach.call(this._cellsElements, function(el) {
+    [].forEach.call(this._cellsElements, function (el) {
       this._onMouseEnter(el);
       this._onClick(el);
     }.bind(this));
@@ -273,7 +273,8 @@ Table.prototype = {
 
   _html: function (rows, cols) {
     var html = '';
-    var x, y;
+    var x;
+    var y;
     var text = getSelectionText(this._doc);
 
     for (x = 0; x <= rows; x++) {
@@ -296,8 +297,8 @@ Table.prototype = {
   },
 
   _onKeyDown: function (e) {
-    var el = getSelectionStart(this._doc),
-        table;
+    var el = getSelectionStart(this._doc);
+    var table;
 
     if (e.which === TAB_KEY_CODE && isInsideElementOfTag(el, 'table')) {
       e.preventDefault();
@@ -328,9 +329,10 @@ Table.prototype = {
   },
 
   _insertRow: function (tbody, cols) {
-    var tr = document.createElement('tr'),
-        html = '',
-        i;
+    var tr = document.createElement('tr');
+    var html = '';
+    var i;
+
     for (i = 0; i < cols; i += 1) {
       html += '<td><br /></td>';
     }
@@ -353,7 +355,7 @@ Table.prototype = {
   }
 };
 
-function MediumEditorTable (options) {
+function MediumEditorTable(options) {
   this.options = extend(options, {
     columns: 10,
     rows: 10
@@ -374,7 +376,7 @@ MediumEditorTable.prototype = {
     return this.isFormVisible;
   },
 
-  getForm: function() {
+  getForm: function () {
     if (!this.builder) {
       this.builder = new Builder({
         onClick: function (rows, columns) {
