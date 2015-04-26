@@ -1,5 +1,18 @@
+# faster builds on new travis setup not using sudo
+sudo: false
+
+# cache vendor dirs
+cache:
+  directories:
+    - node_modules
+
 language: node_js
+
 notifications:
-    email: false
+  email: false
+
 before_script:
-    - npm install -g grunt-cli
+  - npm install -g grunt-cli
+
+script:
+  - npm run test:ci
