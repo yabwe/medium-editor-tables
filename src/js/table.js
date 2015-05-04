@@ -15,8 +15,12 @@ Table.prototype = {
     var html = this._html(rows, cols);
 
     this._editor.pasteHTML(
-      '<table class="medium-editor-table" id="medium-editor-table"' +
-      ' width="100%">' +
+      '<table class="medium-editor-table" id="medium-editor-table">' +
+      '<caption>' + getSelectionText(this._doc) + '</caption>' +
+      '<thead>' +
+      this._html(0, cols, 'th') +
+      '</thead>' +
+      '<tfoot><tr><td colspan="' + (parseInt(cols) + 1) +'"></td></tr></tfoot>' +
       '<tbody>' +
       html +
       '</tbody>' +
@@ -31,16 +35,17 @@ Table.prototype = {
     placeCaretAtNode(this._doc, table.querySelector('td'), true);
   },
 
-  _html: function (rows, cols) {
+  _html: function (rows, cols, cellType) {
     var html = '';
     var x;
     var y;
     var text = getSelectionText(this._doc);
+    var cell = (cellType == 'th') ? '<th><br /></th>' : '<td><br /></td>';
 
     for (x = 0; x <= rows; x++) {
       html += '<tr>';
       for (y = 0; y <= cols; y++) {
-        html += '<td>' + (x === 0 && y === 0 ? text : '<br />') + '</td>';
+        html += cell;
       }
       html += '</tr>';
     }

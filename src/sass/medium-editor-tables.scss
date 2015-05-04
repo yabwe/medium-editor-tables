@@ -39,9 +39,11 @@
   border-collapse: collapse;
   resize: both;
   table-layout: fixed;
+  width: 100%;
 }
 
 .medium-editor-table,
-.medium-editor-table td {
+.medium-editor-table td,
+.medium-editor-table th {
   border: 1px dashed #e3e3e3;
 }
