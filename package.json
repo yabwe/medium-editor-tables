@@ -6,13 +6,12 @@
   "main": "dist/js/medium-editor-tables.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/daviferreira/medium-editor-tables"
+    "url": "https://github.com/yabwe/medium-editor-tables"
   },
   "bugs": {
-    "url": "https://github.com/daviferreira/medium-editor-tables/issues",
-    "email": "hi@daviferreira.com"
+    "url": "https://github.com/yabwe/medium-editor-tables/issues"
   },
-  "homepage": "http://daviferreira.github.io/medium-editor/",
+  "homepage": "http://yabwe.github.io/medium-editor/",
   "keywords": [
     "editor",
     "medium",
