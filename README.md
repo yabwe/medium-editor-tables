@@ -2,14 +2,14 @@
 
 [![NPM info](https://nodei.co/npm/medium-editor-tables.png?downloads=true)](https://nodei.co/npm/medium-editor-tables.png?downloads=true)
 
-[![Travis build status](https://travis-ci.org/daviferreira/medium-editor-tables.png?branch=master)](https://travis-ci.org/daviferreira/medium-editor-tables)
-[![dependencies](https://david-dm.org/daviferreira/medium-editor-tables.png)](https://david-dm.org/daviferreira/medium-editor-tables)
-[![devDependency Status](https://david-dm.org/daviferreira/medium-editor-tables/dev-status.png)](https://david-dm.org/daviferreira/medium-editor-tables#info=devDependencies)
-[![Coverage Status](https://coveralls.io/repos/daviferreira/medium-editor-tables/badge.svg)](https://coveralls.io/r/daviferreira/medium-editor-tables)
+[![Travis build status](https://travis-ci.org/yabwe/medium-editor-tables.png?branch=master)](https://travis-ci.org/yabwe/medium-editor-tables)
+[![dependencies](https://david-dm.org/yabwe/medium-editor-tables.png)](https://david-dm.org/yabwe/medium-editor-tables)
+[![devDependency Status](https://david-dm.org/yabwe/medium-editor-tables/dev-status.png)](https://david-dm.org/yabwe/medium-editor-tables#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/yabwe/medium-editor-tables/badge.svg)](https://coveralls.io/r/yabwe/medium-editor-tables)
 
-MediumEditor Tables is an extension to add a table button/behavior to [MediumEditor](https://github.com/daviferreira/medium-editor).
+MediumEditor Tables is an extension to add a table button/behavior to [MediumEditor](https://github.com/yabwe/medium-editor).
 
-Demo: [http://daviferreira.github.io/medium-editor-tables/](http://daviferreira.github.io/medium-editor-tables/)
+Demo: [http://yabwe.github.io/medium-editor-tables/](http://yabwe.github.io/medium-editor-tables/)
 
 --
 
@@ -95,4 +95,4 @@ open demo/index.html
 
 ## License
 
-MIT: https://github.com/daviferreira/medium-editor-tables/blob/master/LICENSE
+MIT: https://github.com/yabwe/medium-editor-tables/blob/master/LICENSE
