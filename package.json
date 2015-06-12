@@ -38,7 +38,7 @@
     "grunt-jscs": "1.8.0",
     "grunt-sass": "1.0.0",
     "grunt-template-jasmine-istanbul": "0.3.3",
-    "load-grunt-config": "^0.17.1",
+    "load-grunt-config": "0.17.1",
     "time-grunt": "1.2.1"
   },
   "scripts": {
@@ -47,6 +47,6 @@
     "start": "open ./demo/index.html"
   },
   "dependencies": {
-    "medium-editor": "4.11.1"
+    "medium-editor": "5.0.0-alpha.0"
   }
 }

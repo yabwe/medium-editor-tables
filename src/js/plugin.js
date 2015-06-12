@@ -26,7 +26,7 @@ MediumEditorTable.prototype = {
           this.table.insert(rows, columns);
           this.hideForm();
         }.bind(this),
-        ownerDocument: this.base.options.ownerDocument,
+        ownerDocument: this.document,
         rows: this.options.rows,
         columns: this.options.columns
       });

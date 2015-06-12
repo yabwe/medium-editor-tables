@@ -52,19 +52,21 @@
   <script type="text/javascript" charset="utf-8">
   var editor = new MediumEditor('.editable', {
     buttonLabels: 'fontawesome',
-    buttons: [
-      'header1',
-      'bold',
-      'italic',
-      'unorderedlist',
-      'orderedlist',
-      'table'
-    ],
     extensions: {
-      'table': new MediumEditorTable()
+      table: new MediumEditorTable()
     },
-    staticToolbar: true,
-    stickyToolbar: true
+    toolbar: {
+      buttons: [
+        'h1',
+        'bold',
+        'italic',
+        'unorderedlist',
+        'orderedlist',
+        'table'
+      ],
+      static: true,
+      sticky: true
+    }
   });
   </script>
 </body>
