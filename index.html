@@ -12,16 +12,16 @@
   <link rel="stylesheet"
     href="bower_components/normalize.css/normalize.css" />
   <link rel="stylesheet"
-    href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" />
   <link rel="stylesheet"
-    href="//fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic" />
+    href="http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic" />
   <link rel="stylesheet"
     href="bower_components/medium-editor/dist/css/medium-editor.css" />
   <link rel="stylesheet"
     href="bower_components/medium-editor/dist/css/themes/default.css" />
   <link rel="stylesheet"
-    href="bower_components/medium-editor-tables/dist/css/medium-editor-tables.css" />
-  <link rel="stylesheet" href="demo.css" />
+    href="dist/css/medium-editor-tables.css" />
+  <link rel="stylesheet" href="css/demo.css" />
 </head>
 <body>
   <a href="https://github.com/daviferreira/medium-editor-tables" class="github-link"><img style="z-index: 100;position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
@@ -44,27 +44,29 @@
   </div>
 
   <script type="text/javascript"
-    src="bower_components/medium-editor/dist/js/medium-editor.js">
+    src="../bower_components/medium-editor/dist/js/medium-editor.js">
   </script>
-  <script type="text/javascript" src="bower_components/medium-editor-tables/dist/js/medium-editor-tables.js">
+  <script type="text/javascript" src="../dist/js/medium-editor-tables.js">
   </script>
 
   <script type="text/javascript" charset="utf-8">
   var editor = new MediumEditor('.editable', {
     buttonLabels: 'fontawesome',
-    buttons: [
-      'header1',
-      'bold',
-      'italic',
-      'unorderedlist',
-      'orderedlist',
-      'table'
-    ],
     extensions: {
-      'table': new MediumEditorTable()
+      table: new MediumEditorTable()
     },
-    staticToolbar: true,
-    stickyToolbar: true
+    toolbar: {
+      buttons: [
+        'h2',
+        'bold',
+        'italic',
+        'unorderedlist',
+        'orderedlist',
+        'table'
+      ],
+      static: true,
+      sticky: true
+    }
   });
   </script>
 </body>

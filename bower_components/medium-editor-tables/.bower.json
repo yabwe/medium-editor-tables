@@ -1,7 +1,6 @@
 {
   "name": "medium-editor-tables",
-  "version": "0.2.1",
-  "homepage": "http://daviferreira.github.io/medium-editor/",
+  "homepage": "http://yabwe.github.io/medium-editor/",
   "authors": [
     "Davi Ferreira <hi@daviferreira.com>"
   ],
@@ -35,16 +34,17 @@
     "CHANGES.md"
   ],
   "dependencies": {
-    "medium-editor": "^4.6.0",
-    "normalize.css": "~3.0.2"
+    "medium-editor": "5.0.0",
+    "normalize.css": "3.0.3"
   },
-  "_release": "0.2.1",
+  "version": "0.3.0",
+  "_release": "0.3.0",
   "_resolution": {
     "type": "version",
-    "tag": "0.2.1",
-    "commit": "f57dc2f6ca5ddfc615c14ec2255b2fd5e427fe06"
+    "tag": "0.3.0",
+    "commit": "ce911b0a39d59056942e17002e3c4cdc5d7147e6"
   },
   "_source": "git://github.com/daviferreira/medium-editor-tables.git",
-  "_target": "0.2.1",
+  "_target": "0.3.0",
   "_originalSource": "medium-editor-tables"
 }
