@@ -1,6 +1,6 @@
 {
   "name": "medium-editor-tables",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": "Davi Ferreira <hi@daviferreira.com>",
   "description": "MediumEditor extension to allow tables.",
   "main": "dist/js/medium-editor-tables.js",
@@ -46,7 +46,7 @@
     "test:ci": "grunt travis --verbose",
     "start": "open ./demo/index.html"
   },
-  "dependencies": {
+  "peerDependencies": {
     "medium-editor": "5.0.0"
   }
 }
