@@ -32,5 +32,6 @@
   resize: both;
   table-layout: fixed; }
 
-.medium-editor-table, .medium-editor-table td {
+.medium-editor-table,
+.medium-editor-table td {
   border: 1px dashed #e3e3e3; }
