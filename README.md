@@ -52,13 +52,15 @@ On your app, link the style and the script and initialize MediumEditor with the 
   <script type="text/javascript" charset="utf-8">
   var editor = new MediumEditor('.editable', {
     buttonLabels: 'fontawesome',
-    buttons: [
-      'bold',
-      'italic',
-      'table'
-    ],
+    toolbar: {
+      buttons: [
+        'bold',
+        'italic',
+        'table'
+      ]
+    },
     extensions: {
-      'table': new MediumEditorTable()
+      table: new MediumEditorTable()
     }
   });
   </script>
