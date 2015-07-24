@@ -13,4 +13,13 @@ describe('Core TestCase', function () {
     expect(plugin.options.columns).toBe(10);
     expect(plugin.options.rows).toBe(10);
   });
+
+  it('should accept a custom button label', function () {
+    var testLabel = '<span>Test label</span>';
+    var plugin = new MediumEditorTable({
+      buttonLabel: testLabel
+    });
+    var button = plugin.getButton();
+    expect(button.innerHTML).toBe(testLabel);
+  });
 });
