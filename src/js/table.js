@@ -102,8 +102,8 @@ Table.prototype = {
 
   _isLastCell: function (el, row, table) {
     return (
-      --row.cells.length == el.cellIndex &&
-      --table.rows.length == row.rowIndex
+      (row.cells.length - 1) === el.cellIndex &&
+      (table.rows.length - 1) === row.rowIndex
     );
   },
 
