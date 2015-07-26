@@ -7,19 +7,17 @@ var MediumEditorTable = MediumEditor.extensions.form.extend({
   contentFA: '<i class="fa fa-table"></i>',
 
   handleClick: function () {
-    this[this.isOpen === true ? 'hide' : 'show']();
+    this[this.isActive() === true ? 'hide' : 'show']();
   },
 
   hide: function () {
-    this.isOpen = false;
+    this.setInactive();
     this.builder.hide();
-    this.button.classList.remove('medium-editor-button-active');
   },
 
   show: function () {
-    this.isOpen = true;
+    this.setActive();
     this.builder.show(this.button.offsetLeft);
-    this.button.classList.add('medium-editor-button-active');
     var elements = document.getElementsByClassName('medium-editor-table-builder-grid');
     for (var i = 0; i < elements.length; i++) {
       // TODO: what is 16 and what is 2?
@@ -38,6 +36,7 @@ var MediumEditorTable = MediumEditor.extensions.form.extend({
       rows: this.rows || 10,
       columns: this.columns || 10
     });
+
     this.table = new Table(this.base);
 
     return this.builder.getElement();
