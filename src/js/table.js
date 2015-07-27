@@ -29,6 +29,8 @@ Table.prototype = {
     var table = this._doc.getElementById('medium-editor-table');
     table.removeAttribute('id');
     placeCaretAtNode(this._doc, table.querySelector('td'), true);
+
+    this._editor.checkSelection();
   },
 
   _html: function (rows, cols) {
@@ -102,8 +104,8 @@ Table.prototype = {
 
   _isLastCell: function (el, row, table) {
     return (
-      --row.cells.length == el.cellIndex &&
-      --table.rows.length == row.rowIndex
+      (row.cells.length - 1) === el.cellIndex &&
+      (table.rows.length - 1) === row.rowIndex
     );
   },
 

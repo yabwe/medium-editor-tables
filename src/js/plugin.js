@@ -1,82 +1,44 @@
-function MediumEditorTable(options) {
-  this.options = extend(options, {
-    columns: 10,
-    rows: 10
-  });
-  this.parent = true;
-  this.hasForm = true;
-  this.isFormVisible = false;
-  this.createButton();
-}
+var MediumEditorTable = MediumEditor.extensions.form.extend({
+  name: 'table',
 
-MediumEditorTable.prototype = {
-  createButton: function () {
-    this._createButtonElement();
-    this._bindButtonClick();
+  aria: 'create table',
+  action: 'table',
+  contentDefault: 'TBL',
+  contentFA: '<i class="fa fa-table"></i>',
+
+  handleClick: function () {
+    this[this.isActive() === true ? 'hide' : 'show']();
   },
 
-  isDisplayed: function () {
-    return this.isFormVisible;
-  },
-
-  getForm: function () {
-    if (!this.builder) {
-      this.builder = new Builder({
-        onClick: function (rows, columns) {
-          this.table.insert(rows, columns);
-          this.hideForm();
-        }.bind(this),
-        ownerDocument: this.document,
-        rows: this.options.rows,
-        columns: this.options.columns
-      });
-      this.table = new Table(this.base);
-    }
-
-    return this.builder.getElement();
-  },
-
-  getButton: function () {
-    if (this.options.buttonLabel) {
-      this.button.innerHTML = this.options.buttonLabel;
-    } else if (this.base.options.buttonLabels === 'fontawesome') {
-      this.button.innerHTML = '<i class="fa fa-table"></i>';
-    }
-    return this.button;
-  },
-
-  onHide: function () {
-    this.hideForm();
-  },
-
-  hideForm: function () {
-    this.isFormVisible = false;
+  hide: function () {
+    this.setInactive();
     this.builder.hide();
-    this.button.classList.remove('medium-editor-button-active');
   },
 
   show: function () {
-    this.isFormVisible = true;
+    this.setActive();
     this.builder.show(this.button.offsetLeft);
-    this.button.classList.add('medium-editor-button-active');
-    var elements = document.getElementsByClassName('medium-editor-table-builder-grid');
+    var elements = this.document.getElementsByClassName('medium-editor-table-builder-grid');
     for (var i = 0; i < elements.length; i++) {
       // TODO: what is 16 and what is 2?
-      elements[i].style.height = (16 * this.options.rows + 2) + 'px';
-      elements[i].style.width = (16 * this.options.columns + 2) + 'px';
+      elements[i].style.height = (16 * this.rows + 2) + 'px';
+      elements[i].style.width = (16 * this.columns + 2) + 'px';
     }
   },
 
-  _createButtonElement: function () {
-    this.button = document.createElement('button');
-    this.button.className = 'medium-editor-action';
-    this.button.innerHTML = 'tbl';
-  },
+  getForm: function () {
+    this.builder = new Builder({
+      onClick: function (rows, columns) {
+        this.table.insert(rows, columns);
+        this.hide();
+      }.bind(this),
+      ownerDocument: this.document,
+      rows: this.rows || 10,
+      columns: this.columns || 10
+    });
 
-  _bindButtonClick: function () {
-    this.button.addEventListener('click', function (e) {
-      e.preventDefault();
-      this[this.isFormVisible === true ? 'hideForm' : 'show']();
-    }.bind(this));
+    this.table = new Table(this.base);
+
+    return this.builder.getElement();
   }
-};
+});
