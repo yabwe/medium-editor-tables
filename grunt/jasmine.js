@@ -5,6 +5,7 @@ module.exports = {
       specs: 'spec/*.spec.js',
       helpers: 'spec/helpers/*.js',
       styles: 'dist/css/*.css',
+      vendor: 'node_modules/medium-editor/dist/js/medium-editor.js',
       junit: {
         path: 'reports/jasmine/',
         consolidate: true
