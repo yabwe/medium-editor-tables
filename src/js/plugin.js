@@ -18,7 +18,7 @@ var MediumEditorTable = MediumEditor.extensions.form.extend({
   show: function () {
     this.setActive();
     this.builder.show(this.button.offsetLeft);
-    var elements = document.getElementsByClassName('medium-editor-table-builder-grid');
+    var elements = this.document.getElementsByClassName('medium-editor-table-builder-grid');
     for (var i = 0; i < elements.length; i++) {
       // TODO: what is 16 and what is 2?
       elements[i].style.height = (16 * this.rows + 2) + 'px';
