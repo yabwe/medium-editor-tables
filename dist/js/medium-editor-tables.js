@@ -394,7 +394,9 @@ MediumEditorTable.prototype = {
   },
 
   getButton: function () {
-    if (this.base.options.buttonLabels === 'fontawesome') {
+    if (this.options.buttonLabel) {
+      this.button.innerHTML = this.options.buttonLabel;
+    } else if (this.base.options.buttonLabels === 'fontawesome') {
       this.button.innerHTML = '<i class="fa fa-table"></i>';
     }
     return this.button;

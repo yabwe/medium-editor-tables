@@ -1,6 +1,6 @@
 module.exports = {
   options: {
-    files: ['bower.json', 'package.json'],
+    files: ['package.json'],
     updateConfigs: [],
     commit: false,
     createTag: false,
