@@ -29,6 +29,8 @@ Table.prototype = {
     var table = this._doc.getElementById('medium-editor-table');
     table.removeAttribute('id');
     placeCaretAtNode(this._doc, table.querySelector('td'), true);
+
+    this._editor.checkSelection();
   },
 
   _html: function (rows, cols) {
