@@ -34,17 +34,17 @@
     "CHANGES.md"
   ],
   "dependencies": {
-    "medium-editor": "5.0.0",
-    "normalize.css": "3.0.3"
+    "medium-editor": "^5.5.1",
+    "normalize.css": "^3.0.3"
   },
-  "version": "0.3.0",
-  "_release": "0.3.0",
+  "version": "0.4.1",
+  "_release": "0.4.1",
   "_resolution": {
     "type": "version",
-    "tag": "0.3.0",
-    "commit": "ce911b0a39d59056942e17002e3c4cdc5d7147e6"
+    "tag": "0.4.1",
+    "commit": "450cbee2856ada78461a17f7a13057a795fb78ab"
   },
   "_source": "git://github.com/daviferreira/medium-editor-tables.git",
-  "_target": "0.3.0",
+  "_target": "^0.4.1",
   "_originalSource": "medium-editor-tables"
 }

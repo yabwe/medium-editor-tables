@@ -32,18 +32,18 @@
     "Gruntfile.js",
     "demo",
     "package.json",
-    "src/js",
+    "src",
     "README.md",
     "CHANGES.md"
   ],
-  "version": "5.0.0",
-  "_release": "5.0.0",
+  "version": "5.6.2",
+  "_release": "5.6.2",
   "_resolution": {
     "type": "version",
-    "tag": "5.0.0",
-    "commit": "1baced24476027dbd36ffb08ae08c4c0bebccdb1"
+    "tag": "5.6.2",
+    "commit": "db3317403fc5f9d98a82d4375cb40f5d1ba3805a"
   },
   "_source": "git://github.com/daviferreira/medium-editor.git",
-  "_target": "5.0.0",
+  "_target": "^5.5.1",
   "_originalSource": "medium-editor"
 }
