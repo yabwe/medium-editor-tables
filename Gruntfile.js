@@ -7,13 +7,13 @@ global.jsSourceFiles = [
 ];
 
 module.exports = function (grunt) {
-  require('load-grunt-config')(grunt, {
-    loadGruntTasks: {
-      pattern: [
-        'grunt-*',
-        '!grunt-template-jasmine-istanbul'
-      ]
-    }
-  });
-  require('time-grunt')(grunt);
+    require('load-grunt-config')(grunt, {
+        loadGruntTasks: {
+            pattern: [
+              'grunt-*',
+              '!grunt-template-jasmine-istanbul'
+            ]
+        }
+    });
+    require('time-grunt')(grunt);
 };
