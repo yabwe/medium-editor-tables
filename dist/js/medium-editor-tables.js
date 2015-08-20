@@ -367,7 +367,9 @@ var MediumEditorTable = MediumEditor.extensions.form.extend({
     contentDefault: 'TBL',
     contentFA: '<i class="fa fa-table"></i>',
 
-    handleClick: function () {
+    handleClick: function (event) {
+        event.preventDefault();
+        event.stopPropagation();
         this[this.isActive() === true ? 'hide' : 'show']();
     },
 
