@@ -45,3 +45,12 @@
 .medium-editor-table td {
   border: 1px dashed #e3e3e3;
 }
+
+.medium-editor-table-builder-toolbar {
+  display: block;
+  background-color: white;
+
+  button {
+    margin: 0 5px;
+  }
+}
