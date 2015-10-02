@@ -44,7 +44,8 @@
   .medium-editor-table-builder-toolbar span {
     width: 45px;
     display: block;
-    float: left; }
+    float: left;
+    margin-left: 5px; }
   .medium-editor-table-builder-toolbar button {
     margin: 0 3px;
     background-color: #333;
