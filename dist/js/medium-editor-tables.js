@@ -228,6 +228,9 @@ Builder.prototype = {
         this._toolbar = this._doc.createElement('div');
         this._toolbar.className = 'medium-editor-table-builder-toolbar';
 
+        var spanRow = this._doc.createElement('span');
+        spanRow.innerHTML = 'Row:';
+        this._toolbar.appendChild(spanRow);
         var addRowBefore = this._doc.createElement('button');
         addRowBefore.title = 'Add row before';
         addRowBefore.innerHTML = '<i class="fa fa-long-arrow-up"></i>';
@@ -246,6 +249,9 @@ Builder.prototype = {
         remRow.onclick = this.removeRow.bind(this);
         this._toolbar.appendChild(remRow);
 
+        var spanCol = this._doc.createElement('span');
+        spanCol.innerHTML = 'Column:';
+        this._toolbar.appendChild(spanCol);
         var addColumnBefore = this._doc.createElement('button');
         addColumnBefore.title = 'Add column before';
         addColumnBefore.innerHTML = '<i class="fa fa-long-arrow-left"></i>';
@@ -264,7 +270,9 @@ Builder.prototype = {
         remColumn.onclick = this.removeColumn.bind(this);
         this._toolbar.appendChild(remColumn);
 
-        this._root.appendChild(this._toolbar);
+        var grid = this._root.childNodes[0];
+        this._root.insertBefore(this._toolbar, grid);
+        console.log(this._root);
     },
 
     getElement: function () {
