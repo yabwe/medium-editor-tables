@@ -61,6 +61,12 @@ Builder.prototype = {
         remColumn.onclick = this.removeColumn.bind(this);
         this._toolbar.appendChild(remColumn);
 
+        var remTable = this._doc.createElement('button');
+        remTable.title = 'Remove table';
+        remTable.innerHTML = '<i class="fa fa-trash-o"></i>';
+        remTable.onclick = this.removeTable.bind(this);
+        this._toolbar.appendChild(remTable);
+
         var grid = this._root.childNodes[0];
         this._root.insertBefore(this._toolbar, grid);
         console.log(this._root);
@@ -157,6 +163,16 @@ Builder.prototype = {
         for (var i = 0; i < rows; i++) {
             tbody.childNodes[i].removeChild(tbody.childNodes[i].childNodes[cell]);
         }
+        this.options.onClick(0, 0);
+    },
+
+    removeTable: function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var cell = Array.prototype.indexOf.call(this._range.parentNode.childNodes, this._range),
+            table = this._range.parentNode.parentNode.parentNode;
+
+        table.parentNode.removeChild(table);
         this.options.onClick(0, 0);
     }
 };
