@@ -20,19 +20,24 @@ var MediumEditorTable = MediumEditor.extensions.form.extend({
 
     show: function () {
         this.setActive();
-        this.builder.show(this.button.offsetLeft);
-        var elements = this.document.getElementsByClassName('medium-editor-table-builder-grid');
-        for (var i = 0; i < elements.length; i++) {
-            // TODO: what is 16 and what is 2?
-            elements[i].style.height = (16 * this.rows + 2) + 'px';
-            elements[i].style.width = (16 * this.columns + 2) + 'px';
+
+        var range = MediumEditor.selection.getSelectionRange(this.document);
+        if (range.startContainer.nodeName.toLowerCase() === 'td' ||
+          range.endContainer.nodeName.toLowerCase() === 'td' ||
+          MediumEditor.util.getClosestTag(MediumEditor.selection.getSelectedParentElement(range), 'td')) {
+            this.builder.setEditor(MediumEditor.selection.getSelectedParentElement(range));
+        } else {
+            this.builder.setBuilder();
         }
+        this.builder.show(this.button.offsetLeft);
     },
 
     getForm: function () {
         this.builder = new Builder({
             onClick: function (rows, columns) {
-                this.table.insert(rows, columns);
+                if (rows > 0 && columns > 0) {
+                    this.table.insert(rows, columns);
+                }
                 this.hide();
             }.bind(this),
             ownerDocument: this.document,

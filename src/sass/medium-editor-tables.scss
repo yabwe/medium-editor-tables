@@ -45,3 +45,29 @@
 .medium-editor-table td {
   border: 1px dashed #e3e3e3;
 }
+
+.medium-editor-table-builder-toolbar {
+  display: block;
+  background-color: #333;
+  font-size: 0.8em;
+  color: white;
+
+  span {
+    width: 45px;
+    display: block;
+    float: left;
+    margin-left: 5px;
+  }
+
+  button {
+    margin: 0 3px;
+    background-color: #333;
+    border: 0;
+    width: 30px;
+    cursor: pointer;
+
+    i {
+      color: white;
+    }
+  }
+}
