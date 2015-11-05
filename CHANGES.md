@@ -1,3 +1,9 @@
+0.5.0 / 2015-11-05
+==================
+
+* Add table controls: add row/column, delete row/column, delete table
+
+
 0.4.1 / 2015-07-27
 ==================
 
