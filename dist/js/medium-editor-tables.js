@@ -3,7 +3,9 @@
   if (typeof module === 'object') {
     module.exports = factory;
   } else if (typeof define === 'function' && define.amd) {
-    define(factory);
+    define(function() {
+        return factory;
+    });
   } else {
     root.MediumEditorTable = factory;
   }
@@ -298,12 +300,12 @@ Builder.prototype = {
 
     setEditor: function (range) {
         this._range = range;
-        this._doc.getElementsByClassName('medium-editor-table-builder-toolbar')[0].style.display = 'block';
+        this._toolbar.style.display = 'block';
     },
 
     setBuilder: function () {
         this._range = null;
-        this._doc.getElementsByClassName('medium-editor-table-builder-toolbar')[0].style.display = 'none';
+        this._toolbar.style.display = 'none';
         var elements = this._doc.getElementsByClassName('medium-editor-table-builder-grid');
         for (var i = 0; i < elements.length; i++) {
             // TODO: what is 16 and what is 2?
