@@ -39,7 +39,7 @@ Grid.prototype = {
         this._cells = [];
 
         for (var i = 0; i < this.rows * this.columns; i++) {
-            var column = i % this.columns ;
+            var column = i % this.columns;
 
             if (column === 0) {
                 row++;
