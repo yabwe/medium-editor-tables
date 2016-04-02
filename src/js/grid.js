@@ -34,11 +34,16 @@ Grid.prototype = {
     },
 
     _generateCells: function () {
+        var row = -1;
+
         this._cells = [];
 
         for (var i = 0; i < this.rows * this.columns; i++) {
-            var column = i % this.columns,
-                row = Math.floor(i / this.rows);
+            var column = i % this.columns ;
+
+            if (column === 0) {
+                row++;
+            }
 
             this._cells.push({
                 column: column,
@@ -49,7 +54,9 @@ Grid.prototype = {
     },
 
     _html: function () {
-        var html = '<div class="medium-editor-table-builder-grid clearfix">';
+        var width = this.columns * 16 + 2,
+            height = this.rows * 16 + 2,
+            html = '<div class="medium-editor-table-builder-grid clearfix" style="width:' + width + 'px;height:' + height + 'px;">';
         html += this._cellsHTML();
         html += '</div>';
         return html;

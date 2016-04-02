@@ -36,7 +36,7 @@ var MediumEditorTable = MediumEditor.extensions.form.extend({
         if (!this.builder) {
             this.builder = new Builder({
                 onClick: function (rows, columns) {
-                    if (rows > 0 && columns > 0) {
+                    if (rows > 0 || columns > 0) {
                         this.table.insert(rows, columns);
                     }
                     this.hide();

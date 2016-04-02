@@ -12,9 +12,7 @@
 .medium-editor-table-builder-grid {
   border: 1px solid #000;
   border-radius: 3px;
-  height: 162px;
   overflow: hidden;
-  width: 162px;
 }
 
 .medium-editor-table-builder-cell {
@@ -48,6 +46,7 @@
 
 .medium-editor-table-builder-toolbar {
   display: block;
+  min-width: 162px;
   background-color: #333;
   font-size: 0.8em;
   color: white;
