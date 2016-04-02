@@ -69,7 +69,6 @@ Builder.prototype = {
 
         var grid = this._root.childNodes[0];
         this._root.insertBefore(this._toolbar, grid);
-        console.log(this._root);
     },
 
     getElement: function () {
