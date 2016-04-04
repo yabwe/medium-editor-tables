@@ -54,8 +54,8 @@ Grid.prototype = {
     },
 
     _html: function () {
-        var width = this.columns * 16 + 2,
-            height = this.rows * 16 + 2,
+        var width = this.columns * COLUMN_WIDTH + BORDER_WIDTH * 2,
+            height = this.rows * COLUMN_WIDTH + BORDER_WIDTH * 2,
             html = '<div class="medium-editor-table-builder-grid clearfix" style="width:' + width + 'px;height:' + height + 'px;">';
         html += this._cellsHTML();
         html += '</div>';

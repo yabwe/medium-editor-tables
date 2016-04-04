@@ -96,9 +96,8 @@ Builder.prototype = {
         this._toolbar.style.display = 'none';
         var elements = this._doc.getElementsByClassName('medium-editor-table-builder-grid');
         for (var i = 0; i < elements.length; i++) {
-            // TODO: what is 16 and what is 2?
-            elements[i].style.height = (16 * this.rows + 2) + 'px';
-            elements[i].style.width = (16 * this.columns + 2) + 'px';
+            elements[i].style.height = (COLUMN_WIDTH * this.rows + BORDER_WIDTH * 2) + 'px';
+            elements[i].style.width = (COLUMN_WIDTH * this.columns + BORDER_WIDTH * 2) + 'px';
         }
     },
 

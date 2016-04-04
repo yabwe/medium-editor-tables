@@ -1,4 +1,8 @@
-var MediumEditorTable = MediumEditor.extensions.form.extend({
+var COLUMN_WIDTH = 16,
+    BORDER_WIDTH = 1,
+    MediumEditorTable;
+
+MediumEditorTable = MediumEditor.extensions.form.extend({
     name: 'table',
 
     aria: 'create table',
