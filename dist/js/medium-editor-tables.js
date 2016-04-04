@@ -134,11 +134,16 @@ Grid.prototype = {
     },
 
     _generateCells: function () {
+        var row = -1;
+
         this._cells = [];
 
         for (var i = 0; i < this.rows * this.columns; i++) {
-            var column = i % this.columns,
-                row = Math.floor(i / this.rows);
+            var column = i % this.columns;
+
+            if (column === 0) {
+                row++;
+            }
 
             this._cells.push({
                 column: column,
@@ -149,7 +154,9 @@ Grid.prototype = {
     },
 
     _html: function () {
-        var html = '<div class="medium-editor-table-builder-grid clearfix">';
+        var width = this.columns * COLUMN_WIDTH + BORDER_WIDTH * 2,
+            height = this.rows * COLUMN_WIDTH + BORDER_WIDTH * 2,
+            html = '<div class="medium-editor-table-builder-grid clearfix" style="width:' + width + 'px;height:' + height + 'px;">';
         html += this._cellsHTML();
         html += '</div>';
         return html;
@@ -280,7 +287,6 @@ Builder.prototype = {
 
         var grid = this._root.childNodes[0];
         this._root.insertBefore(this._toolbar, grid);
-        console.log(this._root);
     },
 
     getElement: function () {
@@ -308,9 +314,8 @@ Builder.prototype = {
         this._toolbar.style.display = 'none';
         var elements = this._doc.getElementsByClassName('medium-editor-table-builder-grid');
         for (var i = 0; i < elements.length; i++) {
-            // TODO: what is 16 and what is 2?
-            elements[i].style.height = (16 * this.rows + 2) + 'px';
-            elements[i].style.width = (16 * this.columns + 2) + 'px';
+            elements[i].style.height = (COLUMN_WIDTH * this.rows + BORDER_WIDTH * 2) + 'px';
+            elements[i].style.width = (COLUMN_WIDTH * this.columns + BORDER_WIDTH * 2) + 'px';
         }
     },
 
@@ -506,7 +511,11 @@ Table.prototype = {
     }
 };
 
-var MediumEditorTable = MediumEditor.extensions.form.extend({
+var COLUMN_WIDTH = 16,
+    BORDER_WIDTH = 1,
+    MediumEditorTable;
+
+MediumEditorTable = MediumEditor.extensions.form.extend({
     name: 'table',
 
     aria: 'create table',
@@ -541,19 +550,21 @@ var MediumEditorTable = MediumEditor.extensions.form.extend({
     },
 
     getForm: function () {
-        this.builder = new Builder({
-            onClick: function (rows, columns) {
-                if (rows > 0 && columns > 0) {
-                    this.table.insert(rows, columns);
-                }
-                this.hide();
-            }.bind(this),
-            ownerDocument: this.document,
-            rows: this.rows || 10,
-            columns: this.columns || 10
-        });
+        if (!this.builder) {
+            this.builder = new Builder({
+                onClick: function (rows, columns) {
+                    if (rows > 0 || columns > 0) {
+                        this.table.insert(rows, columns);
+                    }
+                    this.hide();
+                }.bind(this),
+                ownerDocument: this.document,
+                rows: this.rows || 10,
+                columns: this.columns || 10
+            });
 
-        this.table = new Table(this.base);
+            this.table = new Table(this.base);
+        }
 
         return this.builder.getElement();
     }

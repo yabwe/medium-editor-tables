@@ -1,3 +1,12 @@
+
+0.5.1 / 2016-04-04
+==================
+
+* Fix custom number of rows and columns
+* Fix grid not showing up
+* Fix toolbar when multiple editor's are initialized
+* Fix AMD-style definition
+
 0.5.0 / 2015-11-05
 ==================
 
