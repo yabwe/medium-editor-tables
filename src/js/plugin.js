@@ -1,4 +1,8 @@
-var MediumEditorTable = MediumEditor.extensions.form.extend({
+var COLUMN_WIDTH = 16,
+    BORDER_WIDTH = 1,
+    MediumEditorTable;
+
+MediumEditorTable = MediumEditor.extensions.form.extend({
     name: 'table',
 
     aria: 'create table',
@@ -33,19 +37,21 @@ var MediumEditorTable = MediumEditor.extensions.form.extend({
     },
 
     getForm: function () {
-        this.builder = new Builder({
-            onClick: function (rows, columns) {
-                if (rows > 0 && columns > 0) {
-                    this.table.insert(rows, columns);
-                }
-                this.hide();
-            }.bind(this),
-            ownerDocument: this.document,
-            rows: this.rows || 10,
-            columns: this.columns || 10
-        });
+        if (!this.builder) {
+            this.builder = new Builder({
+                onClick: function (rows, columns) {
+                    if (rows > 0 || columns > 0) {
+                        this.table.insert(rows, columns);
+                    }
+                    this.hide();
+                }.bind(this),
+                ownerDocument: this.document,
+                rows: this.rows || 10,
+                columns: this.columns || 10
+            });
 
-        this.table = new Table(this.base);
+            this.table = new Table(this.base);
+        }
 
         return this.builder.getElement();
     }
