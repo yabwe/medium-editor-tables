@@ -323,18 +323,20 @@ Builder.prototype = {
     addRow: function (before, e) {
         e.preventDefault();
         e.stopPropagation();
-        var tbody = this._range.parentNode.parentNode,
+        var currentTr = this._range.parentNode,
+            tbody = currentTr.parentNode,
             tr = this._doc.createElement('tr'),
             td;
-        for (var i = 0; i < this._range.parentNode.childNodes.length; i++) {
+
+        for (var i = 0; i < currentTr.querySelectorAll('td').length; i++) {
             td = this._doc.createElement('td');
             td.appendChild(this._doc.createElement('br'));
             tr.appendChild(td);
         }
-        if (before !== true && this._range.parentNode.nextSibling) {
-            tbody.insertBefore(tr, this._range.parentNode.nextSibling);
+        if (before !== true && currentTr.nextSibling) {
+            tbody.insertBefore(tr, currentTr.nextSibling);
         } else if (before === true) {
-            tbody.insertBefore(tr, this._range.parentNode);
+            tbody.insertBefore(tr, currentTr);
         } else {
             tbody.appendChild(tr);
         }
@@ -351,19 +353,21 @@ Builder.prototype = {
     addColumn: function (before, e) {
         e.preventDefault();
         e.stopPropagation();
-        var cell = Array.prototype.indexOf.call(this._range.parentNode.childNodes, this._range),
-            tbody = this._range.parentNode.parentNode,
-            td;
+        var currentTr = this._range.parentNode,
+            cell = Array.prototype.indexOf.call(currentTr.querySelectorAll('td'), this._range),
+            tbody = currentTr.parentNode,
+            td,
+            tableTrs = tbody.querySelectorAll('tr');
 
-        for (var i = 0; i < tbody.childNodes.length; i++) {
+        for (var i = 0; i < tableTrs.length; i++) {
             td = this._doc.createElement('td');
             td.appendChild(this._doc.createElement('br'));
             if (before === true) {
-                tbody.childNodes[i].insertBefore(td, tbody.childNodes[i].childNodes[cell]);
-            } else if (this._range.parentNode.parentNode.childNodes[i].childNodes[cell].nextSibling) {
-                tbody.childNodes[i].insertBefore(td, tbody.childNodes[i].childNodes[cell].nextSibling);
+                tableTrs[i].insertBefore(td, tableTrs[i].querySelectorAll('td')[cell]);
+            } else if (currentTr.parentNode.querySelectorAll('tr')[i].querySelectorAll('td')[cell].nextSibling) {
+                tableTrs[i].insertBefore(td, tableTrs[i].querySelectorAll('td')[cell].nextSibling);
             } else {
-                tbody.childNodes[i].appendChild(td);
+                tableTrs[i].appendChild(td);
             }
         }
 
@@ -373,12 +377,13 @@ Builder.prototype = {
     removeColumn: function (e) {
         e.preventDefault();
         e.stopPropagation();
-        var cell = Array.prototype.indexOf.call(this._range.parentNode.childNodes, this._range),
+        var cell = Array.prototype.indexOf.call(this._range.parentNode.querySelectorAll('td'), this._range),
             tbody = this._range.parentNode.parentNode,
-            rows = tbody.childNodes.length;
+            currentTrs = tbody.querySelectorAll('tr'),
+            rows = currentTrs.length;
 
         for (var i = 0; i < rows; i++) {
-            tbody.childNodes[i].removeChild(tbody.childNodes[i].childNodes[cell]);
+            currentTrs[i].removeChild(currentTrs[i].querySelectorAll('td')[cell]);
         }
         this.options.onClick(0, 0);
     },
@@ -386,7 +391,7 @@ Builder.prototype = {
     removeTable: function (e) {
         e.preventDefault();
         e.stopPropagation();
-        var cell = Array.prototype.indexOf.call(this._range.parentNode.childNodes, this._range),
+        var cell = Array.prototype.indexOf.call(this._range.parentNode.querySelectorAll('td'), this._range),
             table = this._range.parentNode.parentNode.parentNode;
 
         table.parentNode.removeChild(table);

@@ -1,10 +1,10 @@
 {
-  "name": "medium-editor-tables",
-  "homepage": "http://yabwe.github.io/medium-editor/",
+  "name": "medium-editor-tables-fork",
+  "homepage": "https://github.com/lexgorbunov/medium-editor-tables-fork",
   "authors": [
-    "Davi Ferreira <hi@daviferreira.com>"
+    "Alexanger Gorbunov <lexgorbunov@gmail.com>"
   ],
-  "description": "MediumEditor extension to allow tables.",
+  "description": "MediumEditor extension to allow tables (fork).",
   "main": [
     "dist/js/medium-editor-tables.js",
     "dist/css/medium-editor-tables.css"
@@ -31,7 +31,9 @@
     "package.json",
     "src/js",
     "README.md",
-    "CHANGES.md"
+    "CHANGES.md",
+    "test",
+    "tests"
   ],
   "dependencies": {
     "medium-editor": "^5.5.1",
