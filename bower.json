@@ -38,5 +38,6 @@
   "dependencies": {
     "medium-editor": "^5.5.1",
     "normalize.css": "^3.0.3"
-  }
+  },
+  "version": "0.5.3"
 }
