@@ -2,7 +2,7 @@ var COLUMN_WIDTH = 16,
     BORDER_WIDTH = 1,
     MediumEditorTable;
 
-MediumEditorTable = MediumEditor.extensions.form.extend({
+MediumEditorTable = root.MediumEditor.extensions.form.extend({
     name: 'table',
 
     aria: 'create table',
