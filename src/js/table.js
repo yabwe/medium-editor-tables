@@ -17,7 +17,7 @@ Table.prototype = {
         this._editor.pasteHTML(
             '<table class="medium-editor-table" id="medium-editor-table"' +
             ' width="100%">' +
-            '<tbody>' +
+            '<tbody id="medium-editor-table-tbody">' +
             html +
             '</tbody>' +
             '</table>', {
@@ -26,7 +26,13 @@ Table.prototype = {
             }
         );
 
-        var table = this._doc.getElementById('medium-editor-table');
+        var table = this._doc.getElementById('medium-editor-table'),
+            tbody = this._doc.getElementById('medium-editor-table-tbody');
+        if (0 === $(table).find('#medium-editor-table-tbody').length) {
+            //Edge case, where tbody gets appended outside table tag
+            $(tbody).detach().appendTo(table);
+        }
+        tbody.removeAttribute('id');
         table.removeAttribute('id');
         placeCaretAtNode(this._doc, table.querySelector('td'), true);
 
