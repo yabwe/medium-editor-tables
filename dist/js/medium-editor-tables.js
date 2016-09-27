@@ -8,9 +8,9 @@
         return factory;
     });
   } else {
-    root.MediumEditorTable = factory;
+    root.MediumEditorTable = factory(root);
   }
-}(this, function () {
+}(this, function (root) {
 
   'use strict';
 
@@ -516,7 +516,7 @@ var COLUMN_WIDTH = 16,
     BORDER_WIDTH = 1,
     MediumEditorTable;
 
-MediumEditorTable = MediumEditor.extensions.form.extend({
+MediumEditorTable = root.MediumEditor.extensions.form.extend({
     name: 'table',
 
     aria: 'create table',
@@ -572,4 +572,4 @@ MediumEditorTable = MediumEditor.extensions.form.extend({
 });
 
   return MediumEditorTable;
-}()));
+}));

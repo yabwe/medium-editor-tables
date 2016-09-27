@@ -8,8 +8,8 @@
         return factory;
     });
   } else {
-    root.MediumEditorTable = factory;
+    root.MediumEditorTable = factory(root);
   }
-}(this, function () {
+}(this, function (root) {
 
   'use strict';
