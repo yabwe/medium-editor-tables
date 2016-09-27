@@ -1,4 +1,8 @@
 
+0.5.3 / 2016-09-27
+==================
+* Fix detached tbody from table
+
 0.5.2 / 2016-06-20
 ==================
 * Fix electron environment
