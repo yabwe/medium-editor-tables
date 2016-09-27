@@ -26,11 +26,11 @@ Table.prototype = {
             }
         );
 
-        var table = this._doc.getElementById('medium-editor-table');
-        var tbody = this._doc.getElementById('medium-editor-table-tbody');
-        if(!$(table).find('#medium-editor-table-tbody').length) {
-          //Edge case, where tbody gets appended outside table tag
-          $(tbody).detach().appendTo(table);
+        var table = this._doc.getElementById('medium-editor-table'),
+            tbody = this._doc.getElementById('medium-editor-table-tbody');
+        if (0 === $(table).find('#medium-editor-table-tbody').length) {
+            //Edge case, where tbody gets appended outside table tag
+            $(tbody).detach().appendTo(table);
         }
         tbody.removeAttribute('id');
         table.removeAttribute('id');
