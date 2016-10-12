@@ -90,8 +90,8 @@ Builder.prototype = {
         this._range = range;
         this._toolbar.style.display = 'block';
         if (restrictNestedTable) {
-          var elements = this._doc.getElementsByClassName('medium-editor-table-builder-grid');
-          elements[0].style.display = 'none';
+            var elements = this._doc.getElementsByClassName('medium-editor-table-builder-grid');
+            elements[0].style.display = 'none';
         }
     },
 
