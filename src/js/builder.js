@@ -86,15 +86,20 @@ Builder.prototype = {
         this._root.style.left = left + 'px';
     },
 
-    setEditor: function (range) {
+    setEditor: function (range, restrictNestedTable) {
         this._range = range;
         this._toolbar.style.display = 'block';
+        if (restrictNestedTable) {
+            var elements = this._doc.getElementsByClassName('medium-editor-table-builder-grid');
+            elements[0].style.display = 'none';
+        }
     },
 
     setBuilder: function () {
         this._range = null;
         this._toolbar.style.display = 'none';
         var elements = this._doc.getElementsByClassName('medium-editor-table-builder-grid');
+        elements[0].style.display = 'block';
         for (var i = 0; i < elements.length; i++) {
             elements[i].style.height = (COLUMN_WIDTH * this.rows + BORDER_WIDTH * 2) + 'px';
             elements[i].style.width = (COLUMN_WIDTH * this.columns + BORDER_WIDTH * 2) + 'px';

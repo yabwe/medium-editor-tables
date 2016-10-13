@@ -29,7 +29,7 @@ MediumEditorTable = MediumEditor.extensions.form.extend({
         if (range.startContainer.nodeName.toLowerCase() === 'td' ||
           range.endContainer.nodeName.toLowerCase() === 'td' ||
           MediumEditor.util.getClosestTag(MediumEditor.selection.getSelectedParentElement(range), 'td')) {
-            this.builder.setEditor(MediumEditor.selection.getSelectedParentElement(range));
+            this.builder.setEditor(MediumEditor.selection.getSelectedParentElement(range), this.restrictNestedTable);
         } else {
             this.builder.setBuilder();
         }
