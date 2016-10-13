@@ -1,4 +1,8 @@
 
+0.6.0 / 2016-10-13
+==================
+* Add restrict table inside table
+
 0.5.3 / 2016-09-27
 ==================
 * Fix detached tbody from table
