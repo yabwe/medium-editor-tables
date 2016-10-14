@@ -106,21 +106,36 @@ Builder.prototype = {
         }
     },
 
+    getParentType: function (el, targetNode) {
+        var nodeName = el && el.nodeName ? el.nodeName.toLowerCase() : false;
+        if (!nodeName) {
+            return false;
+        }
+        while (nodeName && nodeName !== 'body') {
+            if (nodeName === targetNode) {
+                return el;
+            }
+            el = el.parentNode;
+            nodeName = el && el.nodeName ? el.nodeName.toLowerCase() : false;
+        }
+    },
+
     addRow: function (before, e) {
         e.preventDefault();
         e.stopPropagation();
-        var tbody = this._range.parentNode.parentNode,
+        var tbody = this.getParentType(this._range, 'tbody'),
+            selectedTR = this.getParentType(this._range, 'tr'),
             tr = this._doc.createElement('tr'),
             td;
-        for (var i = 0; i < this._range.parentNode.childNodes.length; i++) {
+        for (var i = 0; i < selectedTR.childNodes.length; i++) {
             td = this._doc.createElement('td');
             td.appendChild(this._doc.createElement('br'));
             tr.appendChild(td);
         }
-        if (before !== true && this._range.parentNode.nextSibling) {
-            tbody.insertBefore(tr, this._range.parentNode.nextSibling);
+        if (before !== true && selectedTR.nextSibling) {
+            tbody.insertBefore(tr, selectedTR.nextSibling);
         } else if (before === true) {
-            tbody.insertBefore(tr, this._range.parentNode);
+            tbody.insertBefore(tr, selectedTR);
         } else {
             tbody.appendChild(tr);
         }
@@ -130,15 +145,19 @@ Builder.prototype = {
     removeRow: function (e) {
         e.preventDefault();
         e.stopPropagation();
-        this._range.parentNode.parentNode.removeChild(this._range.parentNode);
+        var tbody = this.getParentType(this._range, 'tbody'),
+            selectedTR = this.getParentType(this._range, 'tr');
+        tbody.removeChild(selectedTR);
         this.options.onClick(0, 0);
     },
 
     addColumn: function (before, e) {
         e.preventDefault();
         e.stopPropagation();
-        var cell = Array.prototype.indexOf.call(this._range.parentNode.childNodes, this._range),
-            tbody = this._range.parentNode.parentNode,
+        var selectedTR = this.getParentType(this._range, 'tr'),
+            selectedTD = this.getParentType(this._range, 'td'),
+            cell = Array.prototype.indexOf.call(selectedTR.childNodes, selectedTD),
+            tbody = this.getParentType(this._range, 'tbody'),
             td;
 
         for (var i = 0; i < tbody.childNodes.length; i++) {
@@ -146,7 +165,7 @@ Builder.prototype = {
             td.appendChild(this._doc.createElement('br'));
             if (before === true) {
                 tbody.childNodes[i].insertBefore(td, tbody.childNodes[i].childNodes[cell]);
-            } else if (this._range.parentNode.parentNode.childNodes[i].childNodes[cell].nextSibling) {
+            } else if (tbody.childNodes[i].childNodes[cell].nextSibling) {
                 tbody.childNodes[i].insertBefore(td, tbody.childNodes[i].childNodes[cell].nextSibling);
             } else {
                 tbody.childNodes[i].appendChild(td);
@@ -159,8 +178,10 @@ Builder.prototype = {
     removeColumn: function (e) {
         e.preventDefault();
         e.stopPropagation();
-        var cell = Array.prototype.indexOf.call(this._range.parentNode.childNodes, this._range),
-            tbody = this._range.parentNode.parentNode,
+        var selectedTR = this.getParentType(this._range, 'tr'),
+            selectedTD = this.getParentType(this._range, 'td'),
+            cell = Array.prototype.indexOf.call(selectedTR.childNodes, selectedTD),
+            tbody = this.getParentType(this._range, 'tbody'),
             rows = tbody.childNodes.length;
 
         for (var i = 0; i < rows; i++) {
@@ -172,8 +193,10 @@ Builder.prototype = {
     removeTable: function (e) {
         e.preventDefault();
         e.stopPropagation();
-        var cell = Array.prototype.indexOf.call(this._range.parentNode.childNodes, this._range),
-            table = this._range.parentNode.parentNode.parentNode;
+        var selectedTR = this.getParentType(this._range, 'tr'),
+            selectedTD = this.getParentType(this._range, 'td'),
+            cell = Array.prototype.indexOf.call(selectedTR.childNodes, selectedTD),
+            table = this.getParentType(this._range, 'table');
 
         table.parentNode.removeChild(table);
         this.options.onClick(0, 0);
