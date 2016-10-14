@@ -155,8 +155,8 @@ Builder.prototype = {
         e.preventDefault();
         e.stopPropagation();
         var selectedTR = this.getParentType(this._range, 'tr'),
-            selectedTD = this.getParentType(this._range, 'td');
-        var cell = Array.prototype.indexOf.call(selectedTR.childNodes, selectedTD),
+            selectedTD = this.getParentType(this._range, 'td'),
+            cell = Array.prototype.indexOf.call(selectedTR.childNodes, selectedTD),
             tbody = this.getParentType(this._range, 'tbody'),
             td;
 
@@ -179,8 +179,8 @@ Builder.prototype = {
         e.preventDefault();
         e.stopPropagation();
         var selectedTR = this.getParentType(this._range, 'tr'),
-            selectedTD = this.getParentType(this._range, 'td');
-        var cell = Array.prototype.indexOf.call(selectedTR.childNodes, selectedTD),
+            selectedTD = this.getParentType(this._range, 'td'),
+            cell = Array.prototype.indexOf.call(selectedTR.childNodes, selectedTD),
             tbody = this.getParentType(this._range, 'tbody'),
             rows = tbody.childNodes.length;
 
@@ -194,8 +194,8 @@ Builder.prototype = {
         e.preventDefault();
         e.stopPropagation();
         var selectedTR = this.getParentType(this._range, 'tr'),
-            selectedTD = this.getParentType(this._range, 'td');
-        var cell = Array.prototype.indexOf.call(selectedTR.childNodes, selectedTD),
+            selectedTD = this.getParentType(this._range, 'td'),
+            cell = Array.prototype.indexOf.call(selectedTR.childNodes, selectedTD),
             table = this.getParentType(this._range, 'table');
 
         table.parentNode.removeChild(table);
