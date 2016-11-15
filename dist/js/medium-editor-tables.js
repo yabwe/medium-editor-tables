@@ -7,7 +7,7 @@
   } else {
     root.MediumEditorTable = factory;
   }
-}(this, function () {
+}(this, function (MediumEditor) {
 
   'use strict';
 
