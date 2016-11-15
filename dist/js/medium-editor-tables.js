@@ -606,4 +606,4 @@ MediumEditorTable = MediumEditor.extensions.form.extend({
 });
 
   return MediumEditorTable;
-}()));
+}(typeof require === 'function' ? require('medium-editor') : MediumEditor)));
