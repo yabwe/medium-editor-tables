@@ -20,7 +20,7 @@ function getSelectionText(doc) {
 }
 
 function getSelectionStart(doc) {
-    var node = doc.getSelection().anchorNode,
+    var node = doc.getSelection().baseNode ? doc.getSelection().baseNode : doc.getSelection().anchorNode,
         startNode = (node && node.nodeType === 3 ? node.parentNode : node);
 
     return startNode;
