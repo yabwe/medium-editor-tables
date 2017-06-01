@@ -26,16 +26,16 @@ Grid.prototype = {
                          cell.column <= this._currentCell.column;
 
             if (active === true) {
-                if ("classList" in document.createElement("div")) {
+                if ('classList' in document.createElement('div')) {
                     el.classList.add('active');
                 } else {
                     el.className += ' ' + 'active';
                 }
             } else {
-                if ("classList" in document.createElement("div")) {
+                if ('classList' in document.createElement('div')) {
                     el.classList.remove('active');
                 } else {
-                    el.className = (' ' + el.className).replace(' ' + 'active' + ' ',' ');
+                    el.className = (' ' + el.className).replace(' ' + 'active' + ' ', '');
                 }
             }
         }.bind(this));
