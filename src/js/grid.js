@@ -103,8 +103,6 @@ Grid.prototype = {
         el.addEventListener('mouseenter', function (e) {
             clearTimeout(timer);
 
-            var dataset = this.dataset;
-
             timer = setTimeout(function () {
                 self._currentCell = {
                     column: parseInt(e.target.getAttribute('data-column'), 10),
