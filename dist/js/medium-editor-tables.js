@@ -10,7 +10,7 @@
   } else {
     root.MediumEditorTable = factory;
   }
-}(this, function () {
+}(this, function (MediumEditor) {
 
   'use strict';
 
@@ -606,4 +606,4 @@ MediumEditorTable = MediumEditor.extensions.form.extend({
 });
 
   return MediumEditorTable;
-}()));
+}(typeof require === 'function' ? require('medium-editor') : MediumEditor)));
