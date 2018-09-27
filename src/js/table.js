@@ -12,11 +12,14 @@ Table.prototype = {
     },
 
     insert: function (rows, cols) {
-        var html = this._html(rows, cols);
+        var htmlHeader, html;
+        htmlHeader = this._html(0, cols, "header");
+        html = this._html(rows, cols);
 
         this._editor.pasteHTML(
             '<table class="medium-editor-table" id="medium-editor-table"' +
             ' width="100%">' +
+            '<thead>' + htmlHeader + '</thead>' +
             '<tbody id="medium-editor-table-tbody">' +
             html +
             '</tbody>' +
@@ -39,10 +42,10 @@ Table.prototype = {
         this._editor.checkSelection();
     },
 
-    _html: function (rows, cols) {
+    _html: function (rows, cols, defaultText) {
         var html = '',
             x, y,
-            text = getSelectionText(this._doc);
+            text = (defaultText)? defaultText: getSelectionText(this._doc);
 
         for (x = 0; x <= rows; x++) {
             html += '<tr>';
@@ -71,15 +74,20 @@ Table.prototype = {
             e.preventDefault();
             e.stopPropagation();
             table = this._getTableElements(el);
+            var tbody = this._getTBody(getParentOf(el, 'table'));
             if (e.shiftKey) {
                 this._tabBackwards(el.previousSibling, table.row);
             } else {
                 if (this._isLastCell(el, table.row, table.root)) {
-                    this._insertRow(getParentOf(el, 'tbody'), table.row.cells.length);
+                    this._insertRow(tbody, table.row.cells.length);
                 }
                 placeCaretAtNode(this._doc, el);
             }
         }
+    },
+
+    _getTBody: function (table) {
+        return table.querySelector('tbody');
     },
 
     _getTableElements: function (el) {
@@ -109,8 +117,8 @@ Table.prototype = {
 
     _isLastCell: function (el, row, table) {
         return (
-          (row.cells.length - 1) === el.cellIndex &&
-          (table.rows.length - 1) === row.rowIndex
+            (row.cells.length - 1) === el.cellIndex &&
+            (table.rows.length - 1) === row.rowIndex
         );
     },
 
