@@ -13,7 +13,7 @@ Table.prototype = {
 
     insert: function (rows, cols) {
         var htmlHeader, html;
-        htmlHeader = this._html(0, cols, "header");
+        htmlHeader = this._html(0, cols, 'header');
         html = this._html(rows, cols);
 
         this._editor.pasteHTML(
@@ -45,7 +45,7 @@ Table.prototype = {
     _html: function (rows, cols, defaultText) {
         var html = '',
             x, y,
-            text = (defaultText)? defaultText: getSelectionText(this._doc);
+            text = (defaultText) ? defaultText : getSelectionText(this._doc);
 
         for (x = 0; x <= rows; x++) {
             html += '<tr>';
